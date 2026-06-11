@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Default: Minimal Light */
             --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
             --card-bg: #ffffff;
             --text-primary: #1a1a1a;
@@ -25,86 +24,6 @@
             --tech-text: #ffffff;
         }
 
-        /* Dark Professional Theme */
-        [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --card-bg: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --accent: #38bdf8;
-            --accent-dark: #0ea5e9;
-            --accent-light: #0c4a6e;
-            --border: #334155;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
-            --tech-bg: #020617;
-            --tech-text: #f1f5f9;
-        }
-
-        /* Warm Cream Theme */
-        [data-theme="warm"] {
-            --bg-gradient: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            --card-bg: #fffbeb;
-            --text-primary: #451a03;
-            --text-secondary: #78350f;
-            --accent: #d97706;
-            --accent-dark: #b45309;
-            --accent-light: #fef3c7;
-            --border: #fde68a;
-            --shadow: 0 4px 20px rgba(120, 53, 15, 0.1);
-            --shadow-hover: 0 8px 30px rgba(120, 53, 15, 0.15);
-            --tech-bg: #451a03;
-            --tech-text: #fef3c7;
-        }
-
-        /* Ocean Blue Theme */
-        [data-theme="ocean"] {
-            --bg-gradient: linear-gradient(135deg, #0c4a6e 0%, #075985 50%, #0369a1 100%);
-            --card-bg: #f0f9ff;
-            --text-primary: #0c4a6e;
-            --text-secondary: #0369a1;
-            --accent: #0284c7;
-            --accent-dark: #075985;
-            --accent-light: #e0f2fe;
-            --border: #bae6fd;
-            --shadow: 0 4px 20px rgba(3, 105, 161, 0.2);
-            --shadow-hover: 0 8px 30px rgba(3, 105, 161, 0.3);
-            --tech-bg: #0c4a6e;
-            --tech-text: #f0f9ff;
-        }
-
-        /* Modern Purple Theme */
-        [data-theme="purple"] {
-            --bg-gradient: linear-gradient(135deg, #581c87 0%, #7e22ce 50%, #a855f7 100%);
-            --card-bg: #faf5ff;
-            --text-primary: #3b0764;
-            --text-secondary: #6b21a8;
-            --accent: #9333ea;
-            --accent-dark: #7e22ce;
-            --accent-light: #f3e8ff;
-            --border: #e9d5ff;
-            --shadow: 0 4px 20px rgba(126, 34, 206, 0.15);
-            --shadow-hover: 0 8px 30px rgba(126, 34, 206, 0.25);
-            --tech-bg: #3b0764;
-            --tech-text: #faf5ff;
-        }
-
-        /* Forest Green Theme */
-        [data-theme="forest"] {
-            --bg-gradient: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
-            --card-bg: #ecfdf5;
-            --text-primary: #064e3b;
-            --text-secondary: #065f46;
-            --accent: #059669;
-            --accent-dark: #047857;
-            --accent-light: #d1fae5;
-            --border: #a7f3d0;
-            --shadow: 0 4px 20px rgba(6, 95, 70, 0.15);
-            --shadow-hover: 0 8px 30px rgba(6, 95, 70, 0.25);
-            --tech-bg: #064e3b;
-            --tech-text: #ecfdf5;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -117,60 +36,54 @@
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
-            transition: background 0.5s ease;
         }
 
-        /* Theme Switcher */
-        .theme-switcher {
+        .lang-switcher {
             position: fixed;
             top: 20px;
             right: 20px;
+            z-index: 1000;
             background: var(--card-bg);
-            padding: 1rem;
+            padding: 0.5rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            z-index: 1000;
             border: 1px solid var(--border);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
         }
 
-        .theme-switcher h4 {
-            font-size: 0.85rem;
-            margin-bottom: 0.75rem;
+        .lang-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .lang-label i {
+            color: var(--accent);
+        }
+
+        .lang-dropdown {
+            min-width: 140px;
+            padding: 0.55rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
             color: var(--text-primary);
             font-weight: 600;
-        }
-
-        .theme-buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-        }
-
-        .theme-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            border: 2px solid var(--border);
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .theme-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .theme-btn.active {
+        .lang-dropdown:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-light);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
-
-        .theme-btn[data-theme="light"] { background: linear-gradient(135deg, #f5f7fa, #e4e8ec); }
-        .theme-btn[data-theme="dark"] { background: linear-gradient(135deg, #0f172a, #1e293b); }
-        .theme-btn[data-theme="warm"] { background: linear-gradient(135deg, #fef3c7, #fde68a); }
-        .theme-btn[data-theme="ocean"] { background: linear-gradient(135deg, #0c4a6e, #0369a1); }
-        .theme-btn[data-theme="purple"] { background: linear-gradient(135deg, #581c87, #a855f7); }
-        .theme-btn[data-theme="forest"] { background: linear-gradient(135deg, #064e3b, #047857); }
 
         .container {
             max-width: 1200px;
@@ -178,7 +91,6 @@
             padding: 2rem;
         }
 
-        /* Hero Section */
         .hero {
             background: var(--card-bg);
             border-radius: 20px;
@@ -191,7 +103,6 @@
             align-items: center;
             animation: fadeInUp 0.6s ease;
             border: 1px solid var(--border);
-            transition: all 0.3s ease;
         }
 
         .hero-image {
@@ -236,7 +147,6 @@
             font-size: 1.1rem;
         }
 
-        /* Main Content */
         .main-content {
             background: var(--card-bg);
             border-radius: 20px;
@@ -244,7 +154,6 @@
             box-shadow: var(--shadow);
             animation: fadeInUp 0.6s ease 0.2s backwards;
             border: 1px solid var(--border);
-            transition: all 0.3s ease;
         }
 
         .section {
@@ -270,7 +179,6 @@
             color: var(--accent);
         }
 
-        /* Summary */
         .summary-text {
             font-size: 1.05rem;
             line-height: 1.8;
@@ -290,7 +198,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -325,7 +232,6 @@
             line-height: 1.6;
         }
 
-        /* Timeline */
         .timeline {
             position: relative;
             padding-left: 2rem;
@@ -377,7 +283,6 @@
             font-size: 0.9rem;
         }
 
-        /* Projects */
         .projects-grid {
             display: grid;
             gap: 1.5rem;
@@ -438,7 +343,6 @@
             font-weight: bold;
         }
 
-        /* Expandable Details */
         .project-details-toggle {
             margin-top: 1rem;
             padding: 0.75rem 1.5rem;
@@ -478,7 +382,7 @@
         }
 
         .project-details.expanded {
-            max-height: 5000px;
+            max-height: 10000px;
             padding: 1.5rem;
             margin-top: 1rem;
         }
@@ -527,7 +431,6 @@
             color: var(--text-secondary);
         }
 
-        /* Education & Certifications */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -551,7 +454,6 @@
             font-size: 0.9rem;
         }
 
-        /* Languages */
         .languages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -576,7 +478,6 @@
             font-size: 0.9rem;
         }
 
-        /* Technical Summary */
         .tech-summary {
             background: var(--tech-bg);
             color: var(--tech-text);
@@ -612,7 +513,6 @@
             font-weight: 600;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -624,9 +524,8 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .theme-switcher {
+            .lang-switcher {
                 position: relative;
                 top: 0;
                 right: 0;
@@ -668,13 +567,12 @@
             }
         }
 
-        /* Print Styles */
         @media print {
             body {
                 background: white;
             }
 
-            .theme-switcher {
+            .lang-switcher {
                 display: none;
             }
 
@@ -693,29 +591,37 @@
                 margin-top: 1rem !important;
             }
         }
+
+        /* Language visibility is controlled by body[data-current-lang] */
+        [data-lang] {
+            display: none !important;
+        }
+
+        body[data-current-lang="en"] [data-lang="en"],
+        body[data-current-lang="ru"] [data-lang="ru"] {
+            display: revert !important;
+        }
     </style>
 </head>
-<body>
-    <!-- Theme Switcher -->
-    <div class="theme-switcher">
-        <h4>🎨 Choose Theme</h4>
-        <div class="theme-buttons">
-            <button class="theme-btn active" data-theme="light" title="Minimal Light"></button>
-            <button class="theme-btn" data-theme="dark" title="Dark Professional"></button>
-            <button class="theme-btn" data-theme="warm" title="Warm Cream"></button>
-            <button class="theme-btn" data-theme="ocean" title="Ocean Blue"></button>
-            <button class="theme-btn" data-theme="purple" title="Modern Purple"></button>
-            <button class="theme-btn" data-theme="forest" title="Forest Green"></button>
-        </div>
+<body data-current-lang="en">
+    <div class="lang-switcher">
+        <label class="lang-label" for="lang-select">
+            <i class="fas fa-globe"></i>
+            <span>Language</span>
+        </label>
+        <select id="lang-select" class="lang-dropdown" onchange="switchLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+        </select>
     </div>
 
     <div class="container">
-        <!-- Hero Section -->
         <div class="hero">
-            <img src="photo_2026-06-11_23-24-40.jpg" alt="Karimjon Karimov" class="hero-image">
+            <img src="photo.jpg" alt="Karimjon Karimov" class="hero-image">
             <div class="hero-content">
                 <h1>Karimjon Karimov</h1>
-                <div class="title">Backend Engineer</div>
+                <div class="title" data-lang="en">Backend Engineer</div>
+                <div class="title" data-lang="ru">Backend Разработчик</div>
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
@@ -727,917 +633,1273 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Tajikistan (Open to Remote / Relocation)</span>
+                        <span data-lang="en">Tajikistan (Open to Remote / Relocation)</span>
+                        <span data-lang="ru">Таджикистан (Открыт для удалённой работы / релокации)</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="main-content">
-            <!-- Professional Summary -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-user"></i>
-                    Professional Summary
+                    <span data-lang="en">Professional Summary</span>
+                    <span data-lang="ru">Профессиональное резюме</span>
                 </h2>
                 <div class="summary-text">
-                    <p>Backend Engineer with ~5 years of experience in building backend systems across fintech, banking, telecom, government, e-commerce, and enterprise domains.</p>
-                    <p style="margin-top: 1rem;">Specialized in <strong>PHP (Laravel, Bitrix)</strong> and <strong>C# (.NET Framework)</strong> with strong focus on API architecture, system integration, and backend business logic.</p>
-                    <p style="margin-top: 1rem;">Experienced in designing and maintaining production systems involving:</p>
+                    <p data-lang="en">Backend Engineer with ~5 years of experience in building backend systems across fintech, banking, telecom, government, e-commerce, and enterprise domains.</p>
+                    <p data-lang="ru">Backend-разработчик с опытом работы около 5 лет в создании backend-систем в сферах финтеха, банкинга, телекома, государственных проектов, электронной коммерции и корпоративных решений.</p>
+                    
+                    <p style="margin-top: 1rem;" data-lang="en">Specialized in <strong>PHP (Laravel, Bitrix)</strong> and <strong>C# (.NET Framework)</strong> with strong focus on API architecture, system integration, and backend business logic.</p>
+                    <p style="margin-top: 1rem;" data-lang="ru">Специализируюсь на <strong>PHP (Laravel, Bitrix)</strong> и <strong>C# (.NET Framework)</strong> с сильным фокусом на архитектуре API, интеграции систем и backend-бизнес-логике.</p>
+                    
+                    <p style="margin-top: 1rem;" data-lang="en">Experienced in designing and maintaining production systems involving:</p>
+                    <p style="margin-top: 1rem;" data-lang="ru">Имею опыт проектирования и поддержки production-систем, включающих:</p>
                     <ul>
-                        <li>Financial transactions and payment processing</li>
-                        <li>Banking and telecom integrations (billing, CRM, biometric systems)</li>
-                        <li>Authentication systems (OTP, RBAC, rate limiting)</li>
-                        <li>High-load REST API platforms</li>
-                        <li>Data validation, synchronization, and reporting systems</li>
+                        <li data-lang="en">Financial transactions and payment processing</li>
+                        <li data-lang="ru">Финансовые транзакции и обработку платежей</li>
+                        <li data-lang="en">Banking and telecom integrations (billing, CRM, biometric systems)</li>
+                        <li data-lang="ru">Интеграции с банковскими и телеком системами (биллинг, CRM, биометрические системы)</li>
+                        <li data-lang="en">Authentication systems (OTP, RBAC, rate limiting)</li>
+                        <li data-lang="ru">Системы аутентификации (OTP, RBAC, rate limiting)</li>
+                        <li data-lang="en">High-load REST API platforms</li>
+                        <li data-lang="ru">High-load REST API платформы</li>
+                        <li data-lang="en">Data validation, synchronization, and reporting systems</li>
+                        <li data-lang="ru">Системы валидации, синхронизации и отчётности данных</li>
                     </ul>
-                    <p style="margin-top: 1rem;">Strong practical knowledge of backend architecture patterns including service layer design, DTO-based systems, validation layers, queue-based processing, and state machine workflows.</p>
+                    <p style="margin-top: 1rem;" data-lang="en">Strong practical knowledge of backend architecture patterns including service layer design, DTO-based systems, validation layers, queue-based processing, and state machine workflows.</p>
+                    <p style="margin-top: 1rem;" data-lang="ru">Сильные практические знания паттернов backend-архитектуры, включая проектирование service layer, DTO-системы, слои валидации, обработку на основе очередей и workflows state machine.</p>
                 </div>
             </div>
 
-            <!-- Core Skills -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-cogs"></i>
-                    Core Skills
+                    <span data-lang="en">Core Skills</span>
+                    <span data-lang="ru">Основные навыки</span>
                 </h2>
                 <div class="skills-grid">
                     <div class="skill-card">
-                        <h3><i class="fas fa-code"></i> Backend</h3>
+                        <h3><i class="fas fa-code"></i> <span data-lang="en">Backend</span><span data-lang="ru">Backend</span></h3>
                         <p>PHP (Laravel), Bitrix, C# (.NET Framework)</p>
                     </div>
                     <div class="skill-card">
-                        <h3><i class="fas fa-project-diagram"></i> Architecture</h3>
-                        <p>REST API design, service layer architecture, DTO pattern, validation layer, multi-tenant systems, FIFO queues, state machines</p>
+                        <h3><i class="fas fa-project-diagram"></i> <span data-lang="en">Architecture</span><span data-lang="ru">Архитектура</span></h3>
+                        <p data-lang="en">REST API design, service layer architecture, DTO pattern, validation layer, multi-tenant systems, FIFO queues, state machines</p>
+                        <p data-lang="ru">Проектирование REST API, архитектура service layer, паттерн DTO, слой валидации, multi-tenant системы, FIFO очереди, state machines</p>
                     </div>
                     <div class="skill-card">
-                        <h3><i class="fas fa-database"></i> Databases</h3>
+                        <h3><i class="fas fa-database"></i> <span data-lang="en">Databases</span><span data-lang="ru">Базы данных</span></h3>
                         <p>MySQL, PostgreSQL, Redis</p>
                     </div>
                     <div class="skill-card">
-                        <h3><i class="fas fa-plug"></i> Integrations</h3>
-                        <p>Payment systems, banking APIs, SMS gateways, CRM systems, external REST APIs, biometric services</p>
+                        <h3><i class="fas fa-plug"></i> <span data-lang="en">Integrations</span><span data-lang="ru">Интеграции</span></h3>
+                        <p data-lang="en">Payment systems, banking APIs, SMS gateways, CRM systems, external REST APIs, biometric services</p>
+                        <p data-lang="ru">Платёжные системы, банковские API, SMS-шлюзы, CRM-системы, внешние REST API, биометрические сервисы</p>
                     </div>
                     <div class="skill-card">
-                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
-                        <p>OTP authentication, RBAC, rate limiting, signed URLs, secure API design</p>
+                        <h3><i class="fas fa-shield-alt"></i> <span data-lang="en">Security</span><span data-lang="ru">Безопасность</span></h3>
+                        <p data-lang="en">OTP authentication, RBAC, rate limiting, signed URLs, secure API design</p>
+                        <p data-lang="ru">OTP аутентификация, RBAC, rate limiting, подписанные URL, безопасный дизайн API</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Work Experience -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-briefcase"></i>
-                    Work Experience
+                    <span data-lang="en">Work Experience</span>
+                    <span data-lang="ru">Опыт работы</span>
                 </h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <h3>Bitrix Developer / Backend Engineer</h3>
+                        <h3 data-lang="en">Bitrix Developer / Backend Engineer</h3>
+                        <h3 data-lang="ru">Bitrix Разработчик / Backend Инженер</h3>
                         <div class="company">AB Digital | Civitta (Uzbekistan)</div>
                         <div class="period">2023 – Present</div>
                     </div>
                     <div class="timeline-item">
-                        <h3>Backend Developer</h3>
+                        <h3 data-lang="en">Backend Developer</h3>
+                        <h3 data-lang="ru">Backend Разработчик</h3>
                         <div class="company">ADM-Center (Russia)</div>
                         <div class="period">2021 – 2023</div>
                     </div>
                     <div class="timeline-item">
-                        <h3>Backend Developer</h3>
+                        <h3 data-lang="en">Backend Developer</h3>
+                        <h3 data-lang="ru">Backend Разработчик</h3>
                         <div class="company">Gravity Studio (Tajikistan)</div>
                         <div class="period">2021 – 2023</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Project Experience -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-rocket"></i>
-                    Project Experience
+                    <span data-lang="en">Project Experience</span>
+                    <span data-lang="ru">Проекты</span>
                 </h2>
                 <div class="projects-grid">
+                    <!-- Project 1: Cafe Bon -->
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">Cafe Bon — Ordering & Payment Platform (Bitrix + iiko)</div>
                             <div class="project-meta">Uzbekistan | 2025 – Present</div>
                         </div>
                         <ul class="project-features">
-                            <li>Payment processing system with idempotency and concurrency protection</li>
-                            <li>Queue-based payment workflow for reliable transaction handling</li>
-                            <li>iiko POS integration (orders, status tracking, validation layer)</li>
-                            <li>Loyalty system (wallet, cashback, promo logic)</li>
-                            <li>Multilingual API (RU/EN/UZ)</li>
-                            <li>Admin tools for refunds and monitoring</li>
+                            <li data-lang="en">Payment processing system with idempotency and concurrency protection</li>
+                            <li data-lang="ru">Система обработки платежей с идемпотентностью и защитой от конкурентности</li>
+                            <li data-lang="en">Queue-based payment workflow for reliable transaction handling</li>
+                            <li data-lang="ru">Очереди платежей для надёжной обработки транзакций</li>
+                            <li data-lang="en">iiko POS integration (orders, status tracking, validation layer)</li>
+                            <li data-lang="ru">Интеграция с iiko POS (заказы, отслеживание статусов, слой валидации)</li>
+                            <li data-lang="en">Loyalty system (wallet, cashback, promo logic)</li>
+                            <li data-lang="ru">Система лояльности (кошелёк, кешбэк, промо-логика)</li>
+                            <li data-lang="en">Multilingual API (RU/EN/UZ)</li>
+                            <li data-lang="ru">Мультиязычный API (RU/EN/UZ)</li>
+                            <li data-lang="en">Admin tools for refunds and monitoring</li>
+                            <li data-lang="ru">Админ-инструменты для возвратов и мониторинга</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Designed and implemented the integration architecture between the Bitrix platform, the iiko restaurant automation system, and payment gateways (Click, Payme, OKTO).</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Designed and implemented the integration architecture between the Bitrix platform, the iiko restaurant automation system, and payment gateways (Click, Payme, OKTO).</p>
+                            <p data-lang="ru">Спроектировал и реализовал архитектуру интеграции между платформой Bitrix, системой автоматизации ресторанов iiko и платёжными шлюзами (Click, Payme, OKTO).</p>
                             
-                            <h4>Key Technical Achievements</h4>
-                            <p><strong>Payment Management System:</strong></p>
+                            <h4 data-lang="en">Key Technical Achievements</h4>
+                            <h4 data-lang="ru">Ключевые технические достижения</h4>
+                            <p><strong data-lang="en">Payment Management System:</strong><strong data-lang="ru">Система управления платежами:</strong></p>
                             <ul>
-                                <li>Developed and implemented protection mechanisms against duplicate transactions (idempotency) and concurrent requests using an order-locking system</li>
-                                <li>Implemented support for mixed payment methods (cash + loyalty program bonuses)</li>
-                                <li>Designed and automated a payment processing queue (Payment Queue) to ensure reliable transaction handling</li>
+                                <li data-lang="en">Developed and implemented protection mechanisms against duplicate transactions (idempotency) and concurrent requests using an order-locking system</li>
+                                <li data-lang="ru">Разработал и внедрил механизмы защиты от дублирования транзакций (идемпотентность) и конкурентных запросов с использованием системы блокировки заказов</li>
+                                <li data-lang="en">Implemented support for mixed payment methods (cash + loyalty program bonuses)</li>
+                                <li data-lang="ru">Реализовал поддержку смешанных способов оплаты (наличные + бонусы программы лояльности)</li>
+                                <li data-lang="en">Designed and automated a payment processing queue (Payment Queue) to ensure reliable transaction handling</li>
+                                <li data-lang="ru">Спроектировал и автоматизировал очередь обработки платежей (Payment Queue) для обеспечения надёжной обработки транзакций</li>
                             </ul>
 
-                            <p><strong>Deep Integration with iiko:</strong></p>
+                            <p><strong data-lang="en">Deep Integration with iiko:</strong><strong data-lang="ru">Глубокая интеграция с iiko:</strong></p>
                             <ul>
-                                <li>Built a robust integration layer for the iiko API, including order status polling mechanisms, pre-submission data validation (IikoValidator), and real-time response monitoring (IikoMonitor)</li>
-                                <li>Implemented business logic for delivery time slot management and terminal group status validation</li>
+                                <li data-lang="en">Built a robust integration layer for the iiko API, including order status polling mechanisms, pre-submission data validation (IikoValidator), and real-time response monitoring (IikoMonitor)</li>
+                                <li data-lang="ru">Построил надёжный слой интеграции с iiko API, включая механизмы опроса статусов заказов, предварительную валидацию данных (IikoValidator) и мониторинг ответов в реальном времени (IikoMonitor)</li>
+                                <li data-lang="en">Implemented business logic for delivery time slot management and terminal group status validation</li>
+                                <li data-lang="ru">Реализовал бизнес-логику для управления временными слотами доставки и валидации статусов групп терминалов</li>
                             </ul>
 
-                            <p><strong>Loyalty Program & Balance Management:</strong></p>
+                            <p><strong data-lang="en">Loyalty Program & Balance Management:</strong><strong data-lang="ru">Программа лояльности и управление балансом:</strong></p>
                             <ul>
-                                <li>Developed internal wallet top-up functionality and balance synchronization processes</li>
-                                <li>Implemented dynamic cashback calculation based on POS identifiers</li>
-                                <li>Created a flexible promo code system with automatic cart recalculation</li>
+                                <li data-lang="en">Developed internal wallet top-up functionality and balance synchronization processes</li>
+                                <li data-lang="ru">Разработал функционал пополнения внутреннего кошелька и процессы синхронизации баланса</li>
+                                <li data-lang="en">Implemented dynamic cashback calculation based on POS identifiers</li>
+                                <li data-lang="ru">Реализовал динамический расчёт кешбэка на основе идентификаторов POS</li>
+                                <li data-lang="en">Created a flexible promo code system with automatic cart recalculation</li>
+                                <li data-lang="ru">Создал гибкую систему промокодов с автоматическим пересчётом корзины</li>
                             </ul>
 
-                            <p><strong>Internationalization & API Development:</strong></p>
+                            <p><strong data-lang="en">Internationalization & API Development:</strong><strong data-lang="ru">Интернационализация и разработка API:</strong></p>
                             <ul>
-                                <li>Fully implemented multilingual support across the platform, including content and system messages in Russian, English, and Uzbek</li>
-                                <li>Designed, developed, and optimized REST APIs for mobile applications and web interfaces, including order history aggregation and period-based grouping</li>
+                                <li data-lang="en">Fully implemented multilingual support across the platform, including content and system messages in Russian, English, and Uzbek</li>
+                                <li data-lang="ru">Полностью реализовал мультиязычную поддержку платформы, включая контент и системные сообщения на русском, английском и узбекском языках</li>
+                                <li data-lang="en">Designed, developed, and optimized REST APIs for mobile applications and web interfaces, including order history aggregation and period-based grouping</li>
+                                <li data-lang="ru">Спроектировал, разработал и оптимизировал REST API для мобильных приложений и веб-интерфейсов, включая агрегацию истории заказов и группировку по периодам</li>
                             </ul>
 
-                            <p><strong>Administration & Monitoring Tools:</strong></p>
+                            <p><strong data-lang="en">Administration & Monitoring Tools:</strong><strong data-lang="ru">Администрирование и инструменты мониторинга:</strong></p>
                             <ul>
-                                <li>Developed a comprehensive set of diagnostic tools for refund monitoring and external API integration tracking</li>
-                                <li>Created administrative scripts for manual order recovery and resubmission to iiko in case of system failures</li>
+                                <li data-lang="en">Developed a comprehensive set of diagnostic tools for refund monitoring and external API integration tracking</li>
+                                <li data-lang="ru">Разработал комплекс диагностических инструментов для мониторинга возвратов и отслеживания интеграций с внешними API</li>
+                                <li data-lang="en">Created administrative scripts for manual order recovery and resubmission to iiko in case of system failures</li>
+                                <li data-lang="ru">Создал административные скрипты для ручного восстановления заказов и повторной отправки в iiko в случае сбоев системы</li>
                             </ul>
 
-                            <p><strong>Performance Optimization & Security:</strong></p>
+                            <p><strong data-lang="en">Performance Optimization & Security:</strong><strong data-lang="ru">Оптимизация производительности и безопасность:</strong></p>
                             <ul>
-                                <li>Refactored Bitrix infoblock operations to improve application performance and reduce system load</li>
-                                <li>Ensured secure execution of administrative scripts through security key validation</li>
+                                <li data-lang="en">Refactored Bitrix infoblock operations to improve application performance and reduce system load</li>
+                                <li data-lang="ru">Рефакторил операции с инфоблоками Bitrix для улучшения производительности приложения и снижения нагрузки на систему</li>
+                                <li data-lang="en">Ensured secure execution of administrative scripts through security key validation</li>
+                                <li data-lang="ru">Обеспечил безопасное выполнение административных скриптов через валидацию ключей безопасности</li>
                             </ul>
                         </div>
                     </div>
 
+                    <!-- Project 2: Banking Ecosystem -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Banking Ecosystem Projects (AAB / OFB / NBU / Anorbank)</div>
+                            <div class="project-title" data-lang="en">Banking Ecosystem Projects (AAB / OFB / NBU / Anorbank)</div>
+                            <div class="project-title" data-lang="ru">Проекты банковской экосистемы (AAB / OFB / NBU / Anorbank)</div>
                             <div class="project-meta">Uzbekistan | 2023 – Present</div>
                         </div>
                         <ul class="project-features">
-                            <li>Backend development for banking websites and internal systems</li>
-                            <li>Loan calculators, application forms, CMS modules</li>
-                            <li>OTP authentication and secure user flows</li>
-                            <li>REST API integrations with banking systems and CRM</li>
-                            <li>Performance optimization (queries, caching, backend refactoring)</li>
-                            <li>Multilingual content systems and localization logic</li>
-                            <li>SEO-friendly backend routing and content structure</li>
+                            <li data-lang="en">Backend development for banking websites and internal systems</li>
+                            <li data-lang="ru">Backend-разработка для банковских сайтов и внутренних систем</li>
+                            <li data-lang="en">Loan calculators, application forms, CMS modules</li>
+                            <li data-lang="ru">Кредитные калькуляторы, формы заявок, CMS модули</li>
+                            <li data-lang="en">OTP authentication and secure user flows</li>
+                            <li data-lang="ru">OTP аутентификация и безопасные пользовательские потоки</li>
+                            <li data-lang="en">REST API integrations with banking systems and CRM</li>
+                            <li data-lang="ru">REST API интеграции с банковскими системами и CRM</li>
+                            <li data-lang="en">Performance optimization (queries, caching, backend refactoring)</li>
+                            <li data-lang="ru">Оптимизация производительности (запросы, кэширование, рефакторинг backend)</li>
+                            <li data-lang="en">Multilingual content systems and localization logic</li>
+                            <li data-lang="ru">Мультиязычные системы контента и логика локализации</li>
+                            <li data-lang="en">SEO-friendly backend routing and content structure</li>
+                            <li data-lang="ru">SEO-дружелюбная маршрутизация backend и структура контента</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
                             <h4>AAB (Asia Alliance Bank) - 2024.09 – Present</h4>
                             <ul>
-                                <li>Development and optimization of the AAB website, including redesigning key pages and implementing new functionalities using Figma for UI design and HTML, CSS, PHP, and JavaScript</li>
-                                <li>Integration of content management systems (CMS) to improve website administration</li>
-                                <li>Implementation of backend logic for various website modules, including application forms and calculators</li>
-                                <li>Development and integration of APIs for processing user data and interacting with banking systems</li>
-                                <li>Implementation of user authentication and authorization systems, including OTP integration</li>
-                                <li>Optimization of website performance and resolution of display and functionality issues</li>
-                                <li>Development and configuration of analytical tools to track user activity</li>
-                                <li>Creation and integration of landing pages for special offers and bank products</li>
-                                <li>Configuration of roles and access rights in the admin panel</li>
-                                <li>Implementation of website multilingual support and SEO optimization</li>
+                                <li data-lang="en">Development and optimization of the AAB website, including redesigning key pages and implementing new functionalities using Figma for UI design and HTML, CSS, PHP, and JavaScript</li>
+                                <li data-lang="ru">Разработка и оптимизация сайта AAB, включая редизайн ключевых страниц и внедрение нового функционала с использованием Figma для UI дизайна и HTML, CSS, PHP, JavaScript</li>
+                                <li data-lang="en">Integration of content management systems (CMS) to improve website administration</li>
+                                <li data-lang="ru">Интеграция систем управления контентом (CMS) для улучшения администрирования сайта</li>
+                                <li data-lang="en">Implementation of backend logic for various website modules, including application forms and calculators</li>
+                                <li data-lang="ru">Реализация backend-логики для различных модулей сайта, включая формы заявок и калькуляторы</li>
+                                <li data-lang="en">Development and integration of APIs for processing user data and interacting with banking systems</li>
+                                <li data-lang="ru">Разработка и интеграция API для обработки пользовательских данных и взаимодействия с банковскими системами</li>
+                                <li data-lang="en">Implementation of user authentication and authorization systems, including OTP integration</li>
+                                <li data-lang="ru">Реализация систем аутентификации и авторизации пользователей, включая интеграцию OTP</li>
                             </ul>
 
                             <h4>OFB (Orient Finans Bank) - 2023.08 – Present</h4>
                             <ul>
-                                <li>Development and optimization of the OFB website with Figma design integration</li>
-                                <li>CMS integration for improved website administration</li>
-                                <li>Backend logic implementation for application forms and calculators</li>
-                                <li>API development for banking system interactions</li>
-                                <li>OTP authentication and security enhancements</li>
-                                <li>Performance optimization and bug fixes</li>
-                                <li>Analytics tools configuration</li>
-                                <li>Landing pages development for bank products</li>
-                                <li>Admin panel roles configuration</li>
-                                <li>Multilingual support and SEO optimization</li>
+                                <li data-lang="en">Development and optimization of the OFB website with Figma design integration</li>
+                                <li data-lang="ru">Разработка и оптимизация сайта OFB с интеграцией дизайна Figma</li>
+                                <li data-lang="en">CMS integration for improved website administration</li>
+                                <li data-lang="ru">Интеграция CMS для улучшения администрирования сайта</li>
+                                <li data-lang="en">Backend logic implementation for application forms and calculators</li>
+                                <li data-lang="ru">Реализация backend-логики для форм заявок и калькуляторов</li>
+                                <li data-lang="en">API development for banking system interactions</li>
+                                <li data-lang="ru">Разработка API для взаимодействия с банковскими системами</li>
                             </ul>
 
                             <h4>NBU (National Bank of Uzbekistan) - 2023.08 – Present</h4>
                             <ul>
-                                <li>Website development and optimization with Figma-based redesign</li>
-                                <li>CMS integration and administration improvements</li>
-                                <li>Backend modules for forms and calculators</li>
-                                <li>API development with 1+ year experience in web hosting and server setup</li>
-                                <li>OTP authentication implementation</li>
-                                <li>Performance optimization and issue resolution</li>
-                                <li>Analytics tools for marketing campaign effectiveness</li>
-                                <li>Landing pages for special offers</li>
-                                <li>Admin panel configuration and SEO optimization</li>
+                                <li data-lang="en">Website development and optimization with Figma-based redesign</li>
+                                <li data-lang="ru">Разработка и оптимизация сайта с редизайном на основе Figma</li>
+                                <li data-lang="en">CMS integration and administration improvements</li>
+                                <li data-lang="ru">Интеграция CMS и улучшения администрирования</li>
+                                <li data-lang="en">Backend modules for forms and calculators</li>
+                                <li data-lang="ru">Backend модули для форм и калькуляторов</li>
+                                <li data-lang="en">API development with 1+ year experience in web hosting and server setup</li>
+                                <li data-lang="ru">Разработка API с опытом более 1 года в веб-хостинге и настройке серверов</li>
                             </ul>
 
                             <h4>Anorbank - 2023.08 – Present</h4>
                             <ul>
-                                <li>New features implementation including link and content updates</li>
-                                <li>Performance optimization with SQL load analysis and PHP refactoring</li>
-                                <li>New pages creation (promotions, special offers) with responsive design</li>
-                                <li>External services integration (feedback forms, custom APIs)</li>
-                                <li>UI improvements with Figma designs and mobile adaptation</li>
-                                <li>Financial product calculators development</li>
-                                <li>Security enhancements and vulnerability fixes</li>
-                                <li>SEO optimization with redirects and URL structure improvements</li>
+                                <li data-lang="en">New features implementation including link and content updates</li>
+                                <li data-lang="ru">Внедрение новых функций, включая обновление ссылок и контента</li>
+                                <li data-lang="en">Performance optimization with SQL load analysis and PHP refactoring</li>
+                                <li data-lang="ru">Оптимизация производительности с анализом нагрузки SQL и рефакторингом PHP</li>
+                                <li data-lang="en">New pages creation (promotions, special offers) with responsive design</li>
+                                <li data-lang="ru">Создание новых страниц (акции, специальные предложения) с адаптивным дизайном</li>
+                                <li data-lang="en">External services integration (feedback forms, custom APIs)</li>
+                                <li data-lang="ru">Интеграция внешних сервисов (формы обратной связи, кастомные API)</li>
                             </ul>
                         </div>
                     </div>
 
+                    <!-- Project 3: Medmarket -->
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">Medmarket — Pharmacy Marketplace & Logistics Platform</div>
                             <div class="project-meta">Tajikistan | 2025 – 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>Category synchronization system with external APIs</li>
-                            <li>Transactional loyalty system with race condition protection</li>
-                            <li>Batch product import system for large-scale external APIs</li>
-                            <li>RBAC system (admin, staff, courier roles)</li>
-                            <li>Integration with external pharmacy APIs (Yandex Apteka)</li>
+                            <li data-lang="en">Category synchronization system with external APIs</li>
+                            <li data-lang="ru">Система синхронизации категорий с внешними API</li>
+                            <li data-lang="en">Transactional loyalty system with race condition protection</li>
+                            <li data-lang="ru">Транзакционная система лояльности с защитой от race condition</li>
+                            <li data-lang="en">Batch product import system for large-scale external APIs</li>
+                            <li data-lang="ru">Система пакетного импорта товаров для масштабных внешних API</li>
+                            <li data-lang="en">RBAC system (admin, staff, courier roles)</li>
+                            <li data-lang="ru">RBAC система (роли админ, сотрудник, курьер)</li>
+                            <li data-lang="en">Integration with external pharmacy APIs (Yandex Apteka)</li>
+                            <li data-lang="ru">Интеграция с внешними аптечными API (Яндекс Аптека)</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed and maintained a scalable ecosystem for a pharmaceutical marketplace, integrating product catalog management, logistics automation, loyalty program, and external service integrations.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed and maintained a scalable ecosystem for a pharmaceutical marketplace, integrating product catalog management, logistics automation, loyalty program, and external service integrations.</p>
+                            <p data-lang="ru">Разработал и поддерживал масштабируемую экосистему для фармацевтического маркетплейса, интегрируя управление каталогом товаров, автоматизацию логистики, программу лояльности и интеграции с внешними сервисами.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Designed and implemented a category synchronization system with external data sources. Resolved issues with incorrect catalog hierarchy by introducing automatic recalculation of nesting levels and a category mapping mechanism</li>
-                                <li>Developed a fault-tolerant loyalty bonus system based on a transactional model with dedicated validation and service layers for managing bonus operations, including accrual and redemption, protection against race conditions</li>
-                                <li>Implemented integration with Yandex Apteka and other external services using Mapper and Polling patterns, supporting large-scale data processing through batch imports</li>
-                                <li>Introduced data standardization systems, including phone number normalization according to Tajikistan standards</li>
-                                <li>Implemented a multi-level role-based access control (RBAC) system with dedicated policies for staff, administrators, and couriers</li>
-                                <li>Prepared and maintained comprehensive API documentation in OpenAPI/Swagger format</li>
+                                <li data-lang="en">Designed and implemented a category synchronization system with external data sources. Resolved issues with incorrect catalog hierarchy by introducing automatic recalculation of nesting levels and a category mapping mechanism</li>
+                                <li data-lang="ru">Спроектировал и внедрил систему синхронизации категорий с внешними источниками данных. Решил проблемы с некорректной иерархией каталога, внедрив автоматический пересчёт уровней вложенности и механизм маппинга категорий</li>
+                                <li data-lang="en">Developed a fault-tolerant loyalty bonus system based on a transactional model with dedicated validation and service layers for managing bonus operations, including accrual and redemption, protection against race conditions</li>
+                                <li data-lang="ru">Разработал отказоустойчивую систему бонусов лояльности на основе транзакционной модели с выделенными слоями валидации и сервиса для управления бонусными операциями, включая начисление и списание, защиту от race conditions</li>
+                                <li data-lang="en">Implemented integration with Yandex Apteka and other external services using Mapper and Polling patterns, supporting large-scale data processing through batch imports</li>
+                                <li data-lang="ru">Реализовал интеграцию с Яндекс Аптека и другими внешними сервисами с использованием паттернов Mapper и Polling, поддерживая масштабную обработку данных через пакетные импорты</li>
+                                <li data-lang="en">Introduced data standardization systems, including phone number normalization according to Tajikistan standards</li>
+                                <li data-lang="ru">Внедрил системы стандартизации данных, включая нормализацию номеров телефонов согласно стандартам Таджикистана</li>
+                                <li data-lang="en">Implemented a multi-level role-based access control (RBAC) system with dedicated policies for staff, administrators, and couriers</li>
+                                <li data-lang="ru">Реализовал многоуровневую систему контроля доступа на основе ролей (RBAC) с выделенными политиками для сотрудников, администраторов и курьеров</li>
+                                <li data-lang="en">Prepared and maintained comprehensive API documentation in OpenAPI/Swagger format</li>
+                                <li data-lang="ru">Подготовил и поддерживал комплексную документацию API в формате OpenAPI/Swagger</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>PHP 8.3, Laravel 11, Filament, PostgreSQL, Redis, OpenAPI/Swagger, Postman, Alif Payment API, Yandex Apteka API, SMS gateway integrations</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>PHP 8.3, Laravel 11, Filament, PostgreSQL, Redis, OpenAPI/Swagger, Postman, Alif Payment API, Yandex Apteka API, SMS gateway integrations</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 4: MyAuto -->
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">MyAuto — Automotive Ecosystem (Marketplace + AI Services)</div>
                             <div class="project-meta">Tajikistan | 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>OTP authentication with Redis-based rate limiting</li>
-                            <li>Real-time chat system (delivery/read tracking)</li>
-                            <li>LLM integration (Gemini / Vertex AI) for content generation</li>
-                            <li>9-step listing workflow with draft saving</li>
-                            <li>Queue-based notification system (Telegram integration)</li>
-                            <li>OpenAPI documentation automation</li>
+                            <li data-lang="en">OTP authentication with Redis-based rate limiting</li>
+                            <li data-lang="ru">OTP аутентификация с rate limiting на основе Redis</li>
+                            <li data-lang="en">Real-time chat system (delivery/read tracking)</li>
+                            <li data-lang="ru">Чат-система реального времени (отслеживание доставки/прочтения)</li>
+                            <li data-lang="en">LLM integration (Gemini / Vertex AI) for content generation</li>
+                            <li data-lang="ru">Интеграция LLM (Gemini / Vertex AI) для генерации контента</li>
+                            <li data-lang="en">9-step listing workflow with draft saving</li>
+                            <li data-lang="ru">9-шаговый workflow создания объявления с сохранением черновиков</li>
+                            <li data-lang="en">Queue-based notification system (Telegram integration)</li>
+                            <li data-lang="ru">Система уведомлений на основе очередей (интеграция с Telegram)</li>
+                            <li data-lang="en">OpenAPI documentation automation</li>
+                            <li data-lang="ru">Автоматизация документации OpenAPI</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed and launched a scalable ecosystem for the automotive market, combining a marketplace, financial services (credit, leasing, insurance), and an AI-driven content generation system based on LLMs.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed and launched a scalable ecosystem for the automotive market, combining a marketplace, financial services (credit, leasing, insurance), and an AI-driven content generation system based on LLMs.</p>
+                            <p data-lang="ru">Разработал и запустил масштабируемую экосистему для автомобильного рынка, объединяющую маркетплейс, финансовые сервисы (кредит, лизинг, страхование) и систему генерации контента на основе ИИ с использованием LLM.</p>
                             
-                            <h4>Key Technical Achievements</h4>
-                            <p><strong>Authentication & Messaging System:</strong></p>
+                            <h4 data-lang="en">Key Technical Achievements</h4>
+                            <h4 data-lang="ru">Ключевые технические достижения</h4>
+                            <p><strong data-lang="en">Authentication & Messaging System:</strong><strong data-lang="ru">Система аутентификации и обмена сообщениями:</strong></p>
                             <ul>
-                                <li>Designed and implemented a fault-tolerant OTP-based authentication layer integrated with AlifTech SMS services</li>
-                                <li>Used Redis for attempt tracking and race condition prevention</li>
-                                <li>Built a fully functional chat system with delivery/read statuses, applying a validation layer for data protection and Eloquent Resources for optimized API responses</li>
+                                <li data-lang="en">Designed and implemented a fault-tolerant OTP-based authentication layer integrated with AlifTech SMS services</li>
+                                <li data-lang="ru">Спроектировал и внедрил отказоустойчивый слой аутентификации на основе OTP с интеграцией SMS-сервисов AlifTech</li>
+                                <li data-lang="en">Used Redis for attempt tracking and race condition prevention</li>
+                                <li data-lang="ru">Использовал Redis для отслеживания попыток и предотвращения race conditions</li>
+                                <li data-lang="en">Built a fully functional chat system with delivery/read statuses, applying a validation layer for data protection and Eloquent Resources for optimized API responses</li>
+                                <li data-lang="ru">Построил полнофункциональную чат-систему со статусами доставки/прочтения, применяя слой валидации для защиты данных и Eloquent Resources для оптимизированных ответов API</li>
                             </ul>
 
-                            <p><strong>AI Integration & Automation:</strong></p>
+                            <p><strong data-lang="en">AI Integration & Automation:</strong><strong data-lang="ru">Интеграция ИИ и автоматизация:</strong></p>
                             <ul>
-                                <li>Developed a universal provider for LLM integration (Google Gemini, Vertex AI), enabling automated generation of vehicle descriptions based on technical specifications</li>
-                                <li>Improved user experience in listing creation and enhanced catalog content quality through effective prompt engineering</li>
+                                <li data-lang="en">Developed a universal provider for LLM integration (Google Gemini, Vertex AI), enabling automated generation of vehicle descriptions based on technical specifications</li>
+                                <li data-lang="ru">Разработал универсальный провайдер для интеграции LLM (Google Gemini, Vertex AI), обеспечивающий автоматическую генерацию описаний транспортных средств на основе технических характеристик</li>
+                                <li data-lang="en">Improved user experience in listing creation and enhanced catalog content quality through effective prompt engineering</li>
+                                <li data-lang="ru">Улучшил пользовательский опыт при создании объявлений и повысил качество контента каталога через эффективный prompt engineering</li>
                             </ul>
 
-                            <p><strong>Notification Architecture & Observability:</strong></p>
+                            <p><strong data-lang="en">Notification Architecture & Observability:</strong><strong data-lang="ru">Архитектура уведомлений и наблюдаемость:</strong></p>
                             <ul>
-                                <li>Implemented asynchronous notification system using queues, integrated with Telegram Bot API for alerts on new requests and critical system errors</li>
-                                <li>Built real-time logging and monitoring mechanisms, ensuring high stability of financial modules (loans, leasing, buyout)</li>
+                                <li data-lang="en">Implemented asynchronous notification system using queues, integrated with Telegram Bot API for alerts on new requests and critical system errors</li>
+                                <li data-lang="ru">Реализовал асинхронную систему уведомлений с использованием очередей, интегрированную с Telegram Bot API для оповещений о новых запросах и критических ошибках системы</li>
+                                <li data-lang="en">Built real-time logging and monitoring mechanisms, ensuring high stability of financial modules (loans, leasing, buyout)</li>
+                                <li data-lang="ru">Построил механизмы логирования и мониторинга реального времени, обеспечивая высокую стабильность финансовых модулей (кредиты, лизинг, выкуп)</li>
                             </ul>
 
-                            <p><strong>Core Backend & API Design:</strong></p>
+                            <p><strong data-lang="en">Core Backend & API Design:</strong><strong data-lang="ru">Core Backend и проектирование API:</strong></p>
                             <ul>
-                                <li>Implemented complex multi-step listing creation logic (9-step wizard) with draft saving capabilities and change history tracking using observers</li>
-                                <li>Ensured full test coverage with Unit/Feature tests (TDD approach) and automated OpenAPI/Swagger documentation generation</li>
+                                <li data-lang="en">Implemented complex multi-step listing creation logic (9-step wizard) with draft saving capabilities and change history tracking using observers</li>
+                                <li data-lang="ru">Реализовал сложную логику создания объявлений в несколько шагов (9-шаговый мастер) с возможностью сохранения черновиков и отслеживанием истории изменений с использованием observers</li>
+                                <li data-lang="en">Ensured full test coverage with Unit/Feature tests (TDD approach) and automated OpenAPI/Swagger documentation generation</li>
+                                <li data-lang="ru">Обеспечил полное тестовое покрытие с Unit/Feature тестами (подход TDD) и автоматическую генерацию документации OpenAPI/Swagger</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>PHP 8.3 (Laravel 12), Filament PHP v5, Redis, Meilisearch, PostgreSQL, Telegram Bot API, Gemini AI SDK, Swagger (OpenAPI 3.0), PHPUnit</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>PHP 8.3 (Laravel 12), Filament PHP v5, Redis, Meilisearch, PostgreSQL, Telegram Bot API, Gemini AI SDK, Swagger (OpenAPI 3.0), PHPUnit</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 5: Mortgage Platform -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Mortgage Platform (NBU)</div>
+                            <div class="project-title" data-lang="en">Mortgage Platform (NBU)</div>
+                            <div class="project-title" data-lang="ru">Ипотечная платформа (NBU)</div>
                             <div class="project-meta">Uzbekistan | 2025 – 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>FIFO-based queue system for application assignment</li>
-                            <li>State machine workflow for loan lifecycle</li>
-                            <li>Real-time notifications (Laravel Reverb + Echo)</li>
-                            <li>Multi-tenant architecture for partner separation</li>
-                            <li>Excel reporting + audit logging system</li>
+                            <li data-lang="en">FIFO-based queue system for application assignment</li>
+                            <li data-lang="ru">Система очередей на основе FIFO для распределения заявок</li>
+                            <li data-lang="en">State machine workflow for loan lifecycle</li>
+                            <li data-lang="ru">Workflow state machine для жизненного цикла кредита</li>
+                            <li data-lang="en">Real-time notifications (Laravel Reverb + Echo)</li>
+                            <li data-lang="ru">Уведомления реального времени (Laravel Reverb + Echo)</li>
+                            <li data-lang="en">Multi-tenant architecture for partner separation</li>
+                            <li data-lang="ru">Multi-tenant архитектура для разделения партнёров</li>
+                            <li data-lang="en">Excel reporting + audit logging system</li>
+                            <li data-lang="ru">Excel отчётность + система аудита</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed a scalable RESTful API for a mortgage platform enabling interaction between banks, partners, and clients using Laravel 12.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed a scalable RESTful API for a mortgage platform enabling interaction between banks, partners, and clients using Laravel 12.</p>
+                            <p data-lang="ru">Разработал масштабируемый RESTful API для ипотечной платформы, обеспечивающий взаимодействие между банками, партнёрами и клиентами с использованием Laravel 12.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Designed a distribution and status management architecture based on FIFO and State Machine principles. Implemented a queue system for automatic assignment of applications to bank employees and a flexible status workflow. This eliminated processing conflicts and improved application lifecycle transparency by approximately 40%</li>
-                                <li>Implemented a secure real-time communication and notification system using Laravel Reverb and Echo to enable instant status updates in the UI</li>
-                                <li>Integrated two-factor authentication (OTP via Email/SMS) and Signed URL mechanism for secure access to private documents</li>
-                                <li>Developed a B2B integration and analytics module with partner organization management using multi-tenancy logic</li>
-                                <li>Built Excel report export functionality, validation layer using Form Requests, and audit logging to fully track user actions</li>
+                                <li data-lang="en">Designed a distribution and status management architecture based on FIFO and State Machine principles. Implemented a queue system for automatic assignment of applications to bank employees and a flexible status workflow. This eliminated processing conflicts and improved application lifecycle transparency by approximately 40%</li>
+                                <li data-lang="ru">Спроектировал архитектуру распределения и управления статусами на основе принципов FIFO и State Machine. Реализовал систему очередей для автоматического назначения заявок сотрудникам банка и гибкий workflow статусов. Это устранило конфликты обработки и улучшило прозрачность жизненного цикла заявок примерно на 40%</li>
+                                <li data-lang="en">Implemented a secure real-time communication and notification system using Laravel Reverb and Echo to enable instant status updates in the UI</li>
+                                <li data-lang="ru">Реализовал безопасную систему коммуникации и уведомлений реального времени с использованием Laravel Reverb и Echo для мгновенного обновления статусов в UI</li>
+                                <li data-lang="en">Integrated two-factor authentication (OTP via Email/SMS) and Signed URL mechanism for secure access to private documents</li>
+                                <li data-lang="ru">Интегрировал двухфакторную аутентификацию (OTP через Email/SMS) и механизм Signed URL для безопасного доступа к приватным документам</li>
+                                <li data-lang="en">Developed a B2B integration and analytics module with partner organization management using multi-tenancy logic</li>
+                                <li data-lang="ru">Разработал модуль B2B интеграции и аналитики с управлением партнёрскими организациями с использованием multi-tenancy логики</li>
+                                <li data-lang="en">Built Excel report export functionality, validation layer using Form Requests, and audit logging to fully track user actions</li>
+                                <li data-lang="ru">Построил функционал экспорта Excel отчётов, слой валидации с использованием Form Requests и систему аудита для полного отслеживания действий пользователей</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>PHP 8.2+, Laravel 12 (Sanctum, Reverb, Echo), MySQL, Redis, REST API, PHPMailer, PhpSpreadsheet, Vite, Tailwind CSS, GitLab CI/CD, Postman</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>PHP 8.2+, Laravel 12 (Sanctum, Reverb, Echo), MySQL, Redis, REST API, PHPMailer, PhpSpreadsheet, Vite, Tailwind CSS, GitLab CI/CD, Postman</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 6: Perfectum Telecom -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Perfectum Telecom Platform</div>
+                            <div class="project-title" data-lang="en">Perfectum Telecom Platform</div>
+                            <div class="project-title" data-lang="ru">Телеком платформа Perfectum</div>
                             <div class="project-meta">Uzbekistan | 2025 – 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>Integration layer for Billing API and MyID biometric system</li>
-                            <li>DTO-based validation layer for distributed systems</li>
-                            <li>OTP security with Redis rate limiting</li>
-                            <li>Billing error translation system (RU/UZ/EN)</li>
-                            <li>Observability and structured logging improvements</li>
+                            <li data-lang="en">Integration layer for Billing API and MyID biometric system</li>
+                            <li data-lang="ru">Слой интеграции для Billing API и биометрической системы MyID</li>
+                            <li data-lang="en">DTO-based validation layer for distributed systems</li>
+                            <li data-lang="ru">Слой валидации на основе DTO для распределённых систем</li>
+                            <li data-lang="en">OTP security with Redis rate limiting</li>
+                            <li data-lang="ru">OTP безопасность с rate limiting на Redis</li>
+                            <li data-lang="en">Billing error translation system (RU/UZ/EN)</li>
+                            <li data-lang="ru">Система перевода ошибок биллинга (RU/UZ/EN)</li>
+                            <li data-lang="en">Observability and structured logging improvements</li>
+                            <li data-lang="ru">Улучшения наблюдаемости и структурированного логирования</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed and scaled a self-service customer portal for a major telecom operator, focused on subscriber self-management, billing system integration, and secure user verification via biometric data.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed and scaled a self-service customer portal for a major telecom operator, focused on subscriber self-management, billing system integration, and secure user verification via biometric data.</p>
+                            <p data-lang="ru">Разработал и масштабировал портал самообслуживания клиентов для крупного телеком оператора, сфокусированный на самоуправлении абонентов, интеграции с системой биллинга и безопасной верификации пользователей через биометрические данные.</p>
                             
-                            <h4>Key Technical Achievements</h4>
-                            <p><strong>Integration Architecture & API Layer:</strong></p>
+                            <h4 data-lang="en">Key Technical Achievements</h4>
+                            <h4 data-lang="ru">Ключевые технические достижения</h4>
+                            <p><strong data-lang="en">Integration Architecture & API Layer:</strong><strong data-lang="ru">Архитектура интеграции и слой API:</strong></p>
                             <ul>
-                                <li>Designed and implemented a fault-tolerant integration layer with Billing API, DWH, and MyID biometric identification service</li>
-                                <li>Used a validation layer and strictly typed DTOs to standardize data exchange across distributed systems and ensure idempotency for critical operations</li>
+                                <li data-lang="en">Designed and implemented a fault-tolerant integration layer with Billing API, DWH, and MyID biometric identification service</li>
+                                <li data-lang="ru">Спроектировал и внедрил отказоустойчивый слой интеграции с Billing API, DWH и сервисом биометрической идентификации MyID</li>
+                                <li data-lang="en">Used a validation layer and strictly typed DTOs to standardize data exchange across distributed systems and ensure idempotency for critical operations</li>
+                                <li data-lang="ru">Использовал слой валидации и строго типизированные DTO для стандартизации обмена данными в распределённых системах и обеспечения идемпотентности критических операций</li>
                             </ul>
 
-                            <p><strong>Security & Fault Tolerance:</strong></p>
+                            <p><strong data-lang="en">Security & Fault Tolerance:</strong><strong data-lang="ru">Безопасность и отказоустойчивость:</strong></p>
                             <ul>
-                                <li>Implemented a multi-layer security system, including custom middleware for rate limiting (especially for OTP and authentication endpoints)</li>
-                                <li>Developed a password history service to prevent password reuse</li>
-                                <li>Developed a complex billing error parsing mechanism that translates system-specific billing errors into frontend-readable responses with full localization support (RU/UZ/EN)</li>
+                                <li data-lang="en">Implemented a multi-layer security system, including custom middleware for rate limiting (especially for OTP and authentication endpoints)</li>
+                                <li data-lang="ru">Реализовал многоуровневую систему безопасности, включая кастомные middleware для rate limiting (особенно для OTP и endpoints аутентификации)</li>
+                                <li data-lang="en">Developed a password history service to prevent password reuse</li>
+                                <li data-lang="ru">Разработал сервис истории паролей для предотвращения повторного использования паролей</li>
+                                <li data-lang="en">Developed a complex billing error parsing mechanism that translates system-specific billing errors into frontend-readable responses with full localization support (RU/UZ/EN)</li>
+                                <li data-lang="ru">Разработал сложный механизм парсинга ошибок биллинга, который переводит специфичные для системы ошибки биллинга в понятные для frontend ответы с полной поддержкой локализации (RU/UZ/EN)</li>
                             </ul>
 
-                            <p><strong>Performance Optimization & Monitoring:</strong></p>
+                            <p><strong data-lang="en">Performance Optimization & Monitoring:</strong><strong data-lang="ru">Оптимизация производительности и мониторинг:</strong></p>
                             <ul>
-                                <li>Built specialized performance testing tools using HTTP pooling and curl_multi to identify bottlenecks under high-concurrency billing requests</li>
-                                <li>Introduced detailed logging mechanisms (CURL logs, request lifecycle tracking), reducing mean time to detect (MTTD) integration issues by 40%</li>
+                                <li data-lang="en">Built specialized performance testing tools using HTTP pooling and curl_multi to identify bottlenecks under high-concurrency billing requests</li>
+                                <li data-lang="ru">Построил специализированные инструменты тестирования производительности с использованием HTTP pooling и curl_multi для выявления узких мест при высокой конкурентности запросов к биллингу</li>
+                                <li data-lang="en">Introduced detailed logging mechanisms (CURL logs, request lifecycle tracking), reducing mean time to detect (MTTD) integration issues by 40%</li>
+                                <li data-lang="ru">Внедрил детальные механизмы логирования (CURL логи, отслеживание жизненного цикла запросов), сократив среднее время обнаружения (MTTD) проблем интеграции на 40%</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>PHP 8.x, Laravel, Redis (Caching/Throttling), MySQL, MariaDB, Sanctum, MyID Biometric API, DWH API, Telecom Billing API, REST, DTO Pattern, Git, Postman</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>PHP 8.x, Laravel, Redis (Caching/Throttling), MySQL, MariaDB, Sanctum, MyID Biometric API, DWH API, Telecom Billing API, REST, DTO Pattern, Git, Postman</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 7: EITI -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">EITI Government Reporting System</div>
+                            <div class="project-title" data-lang="en">EITI Government Reporting System</div>
+                            <div class="project-title" data-lang="ru">Правительственная система отчётности EITI</div>
                             <div class="project-meta">Tajikistan | 2025 – 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>Data reconciliation engine for cross-system validation</li>
-                            <li>RBAC system for admin, auditor, government roles</li>
-                            <li>PDF/Excel reporting engine (multilingual)</li>
-                            <li>Data processing optimization (-70% processing time)</li>
-                            <li>Layered architecture (Service / Repository / DTO)</li>
+                            <li data-lang="en">Data reconciliation engine for cross-system validation</li>
+                            <li data-lang="ru">Движок сверки данных для кросс-системной валидации</li>
+                            <li data-lang="en">RBAC system for admin, auditor, government roles</li>
+                            <li data-lang="ru">RBAC система для ролей админ, аудитор, правительство</li>
+                            <li data-lang="en">PDF/Excel reporting engine (multilingual)</li>
+                            <li data-lang="ru">Движок отчётности PDF/Excel (мультиязычный)</li>
+                            <li data-lang="en">Data processing optimization (-70% processing time)</li>
+                            <li data-lang="ru">Оптимизация обработки данных (-70% времени обработки)</li>
+                            <li data-lang="en">Layered architecture (Service / Repository / DTO)</li>
+                            <li data-lang="ru">Слоистая архитектура (Service / Repository / DTO)</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed a nationwide reporting and reconciliation system for the extractive industry (EITI), ensuring transparency between mining companies, government authorities, and system administrators through a multi-layer validation architecture.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed a nationwide reporting and reconciliation system for the extractive industry (EITI), ensuring transparency between mining companies, government authorities, and system administrators through a multi-layer validation architecture.</p>
+                            <p data-lang="ru">Разработал общенациональную систему отчётности и сверки для добывающей промышленности (EITI), обеспечивая прозрачность между горнодобывающими компаниями, государственными органами и системными администраторами через многоуровневую архитектуру валидации.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Designed a reconciliation and validation engine to address frequent discrepancies between company and government reporting data. Implemented a dedicated validation layer that automatically maps and compares data codes (01–38) based on complex business rules</li>
-                                <li>Introduced a Virtual Reports mechanism that highlights mismatches in real time and ensures data integrity before final submission</li>
-                                <li>Built an extended Role-Based Access Control system using custom middleware and policies to manage access for Admin, Government, and Auditor roles</li>
-                                <li>Integrated two-factor authentication (2FA) via Email and SMS, isolating auditor permissions and restricting direct API access</li>
-                                <li>Developed bulk operations for mass deadline extensions and notification dispatching</li>
-                                <li>Implemented a PDF generation engine with multilingual support (RU, EN, TJ) using dompdf</li>
-                                <li>Built an Excel processing engine with asynchronous validation, reducing data import and processing time by approximately 70%</li>
-                                <li>Refactored and scaled the codebase architecture by migrating core modules to a layered architecture (Service/Repository pattern) and introducing DTOs</li>
-                                <li>Implemented automated archival of historical data and integrated OpenAPI/Swagger for standardized frontend-backend communication</li>
+                                <li data-lang="en">Designed a reconciliation and validation engine to address frequent discrepancies between company and government reporting data. Implemented a dedicated validation layer that automatically maps and compares data codes (01–38) based on complex business rules</li>
+                                <li data-lang="ru">Спроектировал движок сверки и валидации для устранения частых расхождений между данными отчётности компаний и государственных органов. Реализовал выделенный слой валидации, который автоматически маппит и сравнивает коды данных (01–38) на основе сложных бизнес-правил</li>
+                                <li data-lang="en">Introduced a Virtual Reports mechanism that highlights mismatches in real time and ensures data integrity before final submission</li>
+                                <li data-lang="ru">Внедрил механизм Виртуальных Отчётов, который выделяет несоответствия в реальном времени и обеспечивает целостность данных перед финальной отправкой</li>
+                                <li data-lang="en">Built an extended Role-Based Access Control system using custom middleware and policies to manage access for Admin, Government, and Auditor roles</li>
+                                <li data-lang="ru">Построил расширенную систему контроля доступа на основе ролей с использованием кастомных middleware и политик для управления доступом для ролей Админ, Правительство и Аудитор</li>
+                                <li data-lang="en">Integrated two-factor authentication (2FA) via Email and SMS, isolating auditor permissions and restricting direct API access</li>
+                                <li data-lang="ru">Интегрировал двухфакторную аутентификацию (2FA) через Email и SMS, изолируя права аудиторов и ограничивая прямой доступ к API</li>
+                                <li data-lang="en">Developed bulk operations for mass deadline extensions and notification dispatching</li>
+                                <li data-lang="ru">Разработал массовые операции для продления дедлайнов и рассылки уведомлений</li>
+                                <li data-lang="en">Implemented a PDF generation engine with multilingual support (RU, EN, TJ) using dompdf</li>
+                                <li data-lang="ru">Реализовал движок генерации PDF с мультиязычной поддержкой (RU, EN, TJ) с использованием dompdf</li>
+                                <li data-lang="en">Built an Excel processing engine with asynchronous validation, reducing data import and processing time by approximately 70%</li>
+                                <li data-lang="ru">Построил движок обработки Excel с асинхронной валидацией, сократив время импорта и обработки данных примерно на 70%</li>
+                                <li data-lang="en">Refactored and scaled the codebase architecture by migrating core modules to a layered architecture (Service/Repository pattern) and introducing DTOs</li>
+                                <li data-lang="ru">Рефакторил и масштабировал архитектуру кодовой базы, мигрировав основные модули на слоистую архитектуру (паттерн Service/Repository) и внедрив DTO</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>PHP 8.2, Laravel 12, MySQL, Redis, REST API (OpenAPI/Swagger), Sanctum Authentication, Maatwebsite Excel, dompdf, Git</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>PHP 8.2, Laravel 12, MySQL, Redis, REST API (OpenAPI/Swagger), Sanctum Authentication, Maatwebsite Excel, dompdf, Git</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 8: Statamic OFB -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Statamic OFB Banking Portal</div>
+                            <div class="project-title" data-lang="en">Statamic OFB Banking Portal</div>
+                            <div class="project-title" data-lang="ru">Банковский портал Statamic OFB</div>
                             <div class="project-meta">Uzbekistan | 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>Integration layer for banking APIs with localization support</li>
-                            <li>Financial calculator logic with dynamic formatting</li>
-                            <li>Data validation system for CMS forms</li>
-                            <li>SEO optimization and UI performance improvements</li>
-                            <li>CMS-driven financial product modules</li>
+                            <li data-lang="en">Integration layer for banking APIs with localization support</li>
+                            <li data-lang="ru">Слой интеграции для банковских API с поддержкой локализации</li>
+                            <li data-lang="en">Financial calculator logic with dynamic formatting</li>
+                            <li data-lang="ru">Логика финансовых калькуляторов с динамическим форматированием</li>
+                            <li data-lang="en">Data validation system for CMS forms</li>
+                            <li data-lang="ru">Система валидации данных для CMS форм</li>
+                            <li data-lang="en">SEO optimization and UI performance improvements</li>
+                            <li data-lang="ru">SEO оптимизация и улучшения производительности UI</li>
+                            <li data-lang="en">CMS-driven financial product modules</li>
+                            <li data-lang="ru">Модули финансовых продуктов на основе CMS</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed and maintained a high-load banking portal based on Statamic CMS and Laravel, integrated with external banking APIs and CRM systems, with support for multilingual content and dynamic financial tools.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed and maintained a high-load banking portal based on Statamic CMS and Laravel, integrated with external banking APIs and CRM systems, with support for multilingual content and dynamic financial tools.</p>
+                            <p data-lang="ru">Разработал и поддерживал высоконагруженный банковский портал на основе Statamic CMS и Laravel, интегрированный с внешними банковскими API и CRM системами, с поддержкой мультиязычного контента и динамических финансовых инструментов.</p>
                             
-                            <h4>Key Technical Achievements</h4>
-                            <p><strong>Middleware & API Integration:</strong></p>
+                            <h4 data-lang="en">Key Technical Achievements</h4>
+                            <h4 data-lang="ru">Ключевые технические достижения</h4>
+                            <p><strong data-lang="en">Middleware & API Integration:</strong><strong data-lang="ru">Middleware и интеграция API:</strong></p>
                             <ul>
-                                <li>Implemented a fault-tolerant integration layer with banking APIs using a dedicated forwardRequest method</li>
-                                <li>Ensured transparent propagation of Accept-Language headers and proper localization of responses</li>
-                                <li>This unified frontend-backend communication and guaranteed correct processing of user data in a multilingual environment</li>
+                                <li data-lang="en">Implemented a fault-tolerant integration layer with banking APIs using a dedicated forwardRequest method</li>
+                                <li data-lang="ru">Реализовал отказоустойчивый слой интеграции с банковскими API с использованием выделенного метода forwardRequest</li>
+                                <li data-lang="en">Ensured transparent propagation of Accept-Language headers and proper localization of responses</li>
+                                <li data-lang="ru">Обеспечил прозрачную передачу заголовков Accept-Language и правильную локализацию ответов</li>
                             </ul>
 
-                            <p><strong>Dynamics & Validation Layer:</strong></p>
+                            <p><strong data-lang="en">Dynamics & Validation Layer:</strong><strong data-lang="ru">Динамика и слой валидации:</strong></p>
                             <ul>
-                                <li>Designed and implemented complex financial calculator logic, including locale-aware dynamic amount formatting and automated retrieval of credit limits via external APIs</li>
-                                <li>Resolved data inconsistency issues by introducing safe default values and strict field typing in Statamic forms</li>
+                                <li data-lang="en">Designed and implemented complex financial calculator logic, including locale-aware dynamic amount formatting and automated retrieval of credit limits via external APIs</li>
+                                <li data-lang="ru">Спроектировал и реализовал сложную логику финансовых калькуляторов, включая форматирование сумм с учётом локали и автоматическое получение кредитных лимитов через внешние API</li>
+                                <li data-lang="en">Resolved data inconsistency issues by introducing safe default values and strict field typing in Statamic forms</li>
+                                <li data-lang="ru">Решил проблемы несогласованности данных, внедрив безопасные значения по умолчанию и строгую типизацию полей в формах Statamic</li>
                             </ul>
 
-                            <p><strong>Frontend & SEO Optimization:</strong></p>
+                            <p><strong data-lang="en">Frontend & SEO Optimization:</strong><strong data-lang="ru">Frontend и SEO оптимизация:</strong></p>
                             <ul>
-                                <li>Improved portal performance and SEO by integrating Google Tag Manager</li>
-                                <li>Performed a deep refactoring of UI components (Newsfeed, Product Section, Feature Blocks)</li>
-                                <li>Achieved higher interface responsiveness and improved visual consistency of dynamically loaded CMS content</li>
+                                <li data-lang="en">Improved portal performance and SEO by integrating Google Tag Manager</li>
+                                <li data-lang="ru">Улучшил производительность портала и SEO через интеграцию Google Tag Manager</li>
+                                <li data-lang="en">Performed a deep refactoring of UI components (Newsfeed, Product Section, Feature Blocks)</li>
+                                <li data-lang="ru">Выполнил глубокий рефакторинг UI компонентов (Новостная лента, Секция продуктов, Блоки функций)</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>PHP 8.x, Laravel, Statamic CMS, Antlers, REST APIs, JavaScript, Google Tag Manager, Bitbucket, YAML</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>PHP 8.x, Laravel, Statamic CMS, Antlers, REST APIs, JavaScript, Google Tag Manager, Bitbucket, YAML</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 9: Directorate Government Portal -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Directorate Government Portal (President Office)</div>
+                            <div class="project-title" data-lang="en">Directorate Government Portal (President Office)</div>
+                            <div class="project-title" data-lang="ru">Правительственный портал Директората (Офис Президента)</div>
                             <div class="project-meta">Tajikistan | 2026</div>
                         </div>
                         <ul class="project-features">
-                            <li>Multilingual government portal (news, tenders, projects)</li>
-                            <li>CMS administration system using Filament</li>
-                            <li>Structured content management system</li>
-                            <li>Email notification system for feedback forms</li>
-                            <li>Event tracking and visitor analytics logic</li>
-                            <li>Responsive frontend integration (Tailwind, Swiper, UI components)</li>
+                            <li data-lang="en">Multilingual government portal (news, tenders, projects)</li>
+                            <li data-lang="ru">Мультиязычный правительственный портал (новости, тендеры, проекты)</li>
+                            <li data-lang="en">CMS administration system using Filament</li>
+                            <li data-lang="ru">Система администрирования CMS с использованием Filament</li>
+                            <li data-lang="en">Structured content management system</li>
+                            <li data-lang="ru">Структурированная система управления контентом</li>
+                            <li data-lang="en">Email notification system for feedback forms</li>
+                            <li data-lang="ru">Система email уведомлений для форм обратной связи</li>
+                            <li data-lang="en">Event tracking and visitor analytics logic</li>
+                            <li data-lang="ru">Логика отслеживания событий и аналитики посетителей</li>
+                            <li data-lang="en">Responsive frontend integration (Tailwind, Swiper, UI components)</li>
+                            <li data-lang="ru">Адаптивная интеграция frontend (Tailwind, Swiper, UI компоненты)</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed and maintained a multilingual corporate web portal on Laravel 12. Implemented public sections for news, competitions, projects/objects, documents, tenders, and contacts with SEO-friendly routes and detail pages.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed and maintained a multilingual corporate web portal on Laravel 12. Implemented public sections for news, competitions, projects/objects, documents, tenders, and contacts with SEO-friendly routes and detail pages.</p>
+                            <p data-lang="ru">Разработал и поддерживал мультиязычный корпоративный веб-портал на Laravel 12. Реализовал публичные разделы для новостей, конкурсов, проектов/объектов, документов, тендеров и контактов с SEO-дружелюбными маршрутами и страницами деталей.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Built and supported admin content management with Filament, including site settings and structured content entities</li>
-                                <li>Implemented feedback form processing with email notifications</li>
-                                <li>Implemented event/listener logic for tracking content views</li>
-                                <li>Created database migrations/seeders</li>
-                                <li>Integrated frontend stack (Vite, TailwindCSS, DaisyUI, Swiper/Fancybox)</li>
-                                <li>Ensured responsive UI and handled deployment support tasks (cache management, migrations, testing, and content display improvements)</li>
+                                <li data-lang="en">Built and supported admin content management with Filament, including site settings and structured content entities</li>
+                                <li data-lang="ru">Построил и поддерживал администрирование контента с Filament, включая настройки сайта и структурированные сущности контента</li>
+                                <li data-lang="en">Implemented feedback form processing with email notifications</li>
+                                <li data-lang="ru">Реализовал обработку форм обратной связи с email уведомлениями</li>
+                                <li data-lang="en">Implemented event/listener logic for tracking content views</li>
+                                <li data-lang="ru">Реализовал логику event/listener для отслеживания просмотров контента</li>
+                                <li data-lang="en">Created database migrations/seeders</li>
+                                <li data-lang="ru">Создал миграции/сидеры базы данных</li>
+                                <li data-lang="en">Integrated frontend stack (Vite, TailwindCSS, DaisyUI, Swiper/Fancybox)</li>
+                                <li data-lang="ru">Интегрировал frontend стек (Vite, TailwindCSS, DaisyUI, Swiper/Fancybox)</li>
+                                <li data-lang="en">Ensured responsive UI and handled deployment support tasks (cache management, migrations, testing, and content display improvements)</li>
+                                <li data-lang="ru">Обеспечил адаптивный UI и handled задачи поддержки деплоя (управление кэшем, миграции, тестирование и улучшения отображения контента)</li>
                             </ul>
                         </div>
                     </div>
 
+                    <!-- Project 10: Rumi Hotel -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Rumi Hotel Management System</div>
+                            <div class="project-title" data-lang="en">Rumi Hotel Management System</div>
+                            <div class="project-title" data-lang="ru">Система управления отелем Rumi</div>
                             <div class="project-meta">Tajikistan | 2023 – 2024</div>
                         </div>
                         <ul class="project-features">
-                            <li>Hotel booking and reservation system</li>
-                            <li>Restaurant and service management modules</li>
-                            <li>Payment system integration</li>
-                            <li>REST API for frontend communication</li>
-                            <li>Authentication and role-based access system</li>
-                            <li>Multilingual support (RU/EN)</li>
-                            <li>Admin panel for content and order management</li>
+                            <li data-lang="en">Hotel booking and reservation system</li>
+                            <li data-lang="ru">Система бронирования и резервирования отеля</li>
+                            <li data-lang="en">Restaurant and service management modules</li>
+                            <li data-lang="ru">Модули управления рестораном и сервисами</li>
+                            <li data-lang="en">Payment system integration</li>
+                            <li data-lang="ru">Интеграция платёжной системы</li>
+                            <li data-lang="en">REST API for frontend communication</li>
+                            <li data-lang="ru">REST API для коммуникации с frontend</li>
+                            <li data-lang="en">Authentication and role-based access system</li>
+                            <li data-lang="ru">Система аутентификации и контроля доступа на основе ролей</li>
+                            <li data-lang="en">Multilingual support (RU/EN)</li>
+                            <li data-lang="ru">Мультиязычная поддержка (RU/EN)</li>
+                            <li data-lang="en">Admin panel for content and order management</li>
+                            <li data-lang="ru">Админ-панель для управления контентом и заказами</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>The Rumi Hotel project is designed for hotel business management with comprehensive features for room booking, order management, and administration.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">The Rumi Hotel project is designed for hotel business management with comprehensive features for room booking, order management, and administration.</p>
+                            <p data-lang="ru">Проект Rumi Hotel предназначен для управления гостиничным бизнесом с комплексными функциями бронирования номеров, управления заказами и администрирования.</p>
                             
-                            <h4>Key Features</h4>
+                            <h4 data-lang="en">Key Features</h4>
+                            <h4 data-lang="ru">Ключевые функции</h4>
                             <ul>
-                                <li>Developed and configured web routes using the Laravel framework</li>
-                                <li>Implemented authentication and authorization features including registration, login, password reset, and email verification</li>
-                                <li>Created route groups using middleware for access control and localization</li>
-                                <li>Integrated external APIs via HTTP requests (e.g., for payment processing)</li>
-                                <li>Built content management features for pages, galleries, services, and reviews</li>
-                                <li>Set up an admin panel to manage users, orders, services, and other entities</li>
-                                <li>Developed a RESTful API for interaction with the client side</li>
-                                <li>Optimized and cleaned the system using custom Artisan commands</li>
-                                <li>Worked with middleware for enhanced security and access management</li>
+                                <li data-lang="en">Developed and configured web routes using the Laravel framework</li>
+                                <li data-lang="ru">Разработал и настроил веб-маршруты с использованием фреймворка Laravel</li>
+                                <li data-lang="en">Implemented authentication and authorization features including registration, login, password reset, and email verification</li>
+                                <li data-lang="ru">Реализовал функции аутентификации и авторизации, включая регистрацию, вход, сброс пароля и верификацию email</li>
+                                <li data-lang="en">Created route groups using middleware for access control and localization</li>
+                                <li data-lang="ru">Создал группы маршрутов с использованием middleware для контроля доступа и локализации</li>
+                                <li data-lang="en">Integrated external APIs via HTTP requests (e.g., for payment processing)</li>
+                                <li data-lang="ru">Интегрировал внешние API через HTTP запросы (например, для обработки платежей)</li>
+                                <li data-lang="en">Built content management features for pages, galleries, services, and reviews</li>
+                                <li data-lang="ru">Построил функции управления контентом для страниц, галерей, сервисов и отзывов</li>
+                                <li data-lang="en">Set up an admin panel to manage users, orders, services, and other entities</li>
+                                <li data-lang="ru">Настроил админ-панель для управления пользователями, заказами, сервисами и другими сущностями</li>
+                                <li data-lang="en">Developed a RESTful API for interaction with the client side</li>
+                                <li data-lang="ru">Разработал RESTful API для взаимодействия с клиентской стороной</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>Laravel (PHP), MySQL, REST API, Laravel Middleware, Blade Templates, Composer, Git, OpenServer (OSPanel)</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>Laravel (PHP), MySQL, REST API, Laravel Middleware, Blade Templates, Composer, Git, OpenServer (OSPanel)</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 11: Korzinka -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Korzinka Web Development</div>
+                            <div class="project-title" data-lang="en">Korzinka Web Development</div>
+                            <div class="project-title" data-lang="ru">Веб-разработка Korzinka</div>
                             <div class="project-meta">Uzbekistan | 2023 – 2024</div>
                         </div>
                         <ul class="project-features">
-                            <li>Backend development for e-commerce platform</li>
-                            <li>API integrations and feedback form systems</li>
-                            <li>Caching and performance optimization</li>
-                            <li>Google Sheets and external system integration</li>
-                            <li>Widget/shortcode system development</li>
-                            <li>Hosting and deployment support</li>
+                            <li data-lang="en">Backend development for e-commerce platform</li>
+                            <li data-lang="ru">Backend-разработка для e-commerce платформы</li>
+                            <li data-lang="en">API integrations and feedback form systems</li>
+                            <li data-lang="ru">API интеграции и системы форм обратной связи</li>
+                            <li data-lang="en">Caching and performance optimization</li>
+                            <li data-lang="ru">Кэширование и оптимизация производительности</li>
+                            <li data-lang="en">Google Sheets and external system integration</li>
+                            <li data-lang="ru">Интеграция с Google Sheets и внешними системами</li>
+                            <li data-lang="en">Widget/shortcode system development</li>
+                            <li data-lang="ru">Разработка системы виджетов/шорткодов</li>
+                            <li data-lang="en">Hosting and deployment support</li>
+                            <li data-lang="ru">Поддержка хостинга и деплоя</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
                             <ul>
-                                <li>Development and optimization of the backend for the Korzinka website, including working with APIs and core functionality</li>
-                                <li>Designed layouts and prototypes using Figma, and developed user interfaces with HTML, CSS, PHP, and JavaScript</li>
-                                <li>Integration and configuration of feedback forms, ensuring proper data storage in the admin panel and submission to the CRM</li>
-                                <li>Implementation of caching to improve website performance, with automatic cache clearing set every 48 hours</li>
-                                <li>Set up web hosting and server configurations to support optimized deployment</li>
-                                <li>Bug fixes and functionality optimization, including work with forms, file uploads, and integration with Google Sheets</li>
-                                <li>Development of new features, such as creating shortcodes for generating unique widgets, and developing robust APIs</li>
+                                <li data-lang="en">Development and optimization of the backend for the Korzinka website, including working with APIs and core functionality</li>
+                                <li data-lang="ru">Разработка и оптимизация backend для сайта Korzinka, включая работу с API и основным функционалом</li>
+                                <li data-lang="en">Designed layouts and prototypes using Figma, and developed user interfaces with HTML, CSS, PHP, and JavaScript</li>
+                                <li data-lang="ru">Разработал макеты и прототипы с использованием Figma, и создал пользовательские интерфейсы с HTML, CSS, PHP и JavaScript</li>
+                                <li data-lang="en">Integration and configuration of feedback forms, ensuring proper data storage in the admin panel and submission to the CRM</li>
+                                <li data-lang="ru">Интеграция и настройка форм обратной связи, обеспечивая правильное хранение данных в админ-панели и отправку в CRM</li>
+                                <li data-lang="en">Implementation of caching to improve website performance, with automatic cache clearing set every 48 hours</li>
+                                <li data-lang="ru">Реализация кэширования для улучшения производительности сайта, с автоматической очисткой кэша каждые 48 часов</li>
+                                <li data-lang="en">Bug fixes and functionality optimization, including work with forms, file uploads, and integration with Google Sheets</li>
+                                <li data-lang="ru">Исправление багов и оптимизация функционала, включая работу с формами, загрузкой файлов и интеграцией с Google Sheets</li>
+                                <li data-lang="en">Development of new features, such as creating shortcodes for generating unique widgets, and developing robust APIs</li>
+                                <li data-lang="ru">Разработка новых функций, таких как создание шорткодов для генерации уникальных виджетов и разработка надёжных API</li>
                             </ul>
                         </div>
                     </div>
 
+                    <!-- Project 12: RTSU University -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">RTSU University Website (Bitrix)</div>
+                            <div class="project-title" data-lang="en">RTSU University Website (Bitrix)</div>
+                            <div class="project-title" data-lang="ru">Сайт университета РТСУ (Bitrix)</div>
                             <div class="project-meta">Tajikistan | 2023</div>
                         </div>
                         <ul class="project-features">
-                            <li>University website development on Bitrix CMS</li>
-                            <li>Custom component and module configuration</li>
-                            <li>News, events, and academic content system</li>
-                            <li>Admin content management system</li>
-                            <li>Frontend integration (HTML/CSS/JS)</li>
+                            <li data-lang="en">University website development on Bitrix CMS</li>
+                            <li data-lang="ru">Разработка сайта университета на CMS Bitrix</li>
+                            <li data-lang="en">Custom component and module configuration</li>
+                            <li data-lang="ru">Настройка кастомных компонентов и модулей</li>
+                            <li data-lang="en">News, events, and academic content system</li>
+                            <li data-lang="ru">Система новостей, событий и академического контента</li>
+                            <li data-lang="en">Admin content management system</li>
+                            <li data-lang="ru">Система администрирования контента</li>
+                            <li data-lang="en">Frontend integration (HTML/CSS/JS)</li>
+                            <li data-lang="ru">Frontend интеграция (HTML/CSS/JS)</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>The primary objective of the RTSU website project was to establish a comprehensive online platform that serves as an information hub for students, faculty, and stakeholders. The website provides access to academic programs, admission procedures, news updates, and contact information.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">The primary objective of the RTSU website project was to establish a comprehensive online platform that serves as an information hub for students, faculty, and stakeholders. The website provides access to academic programs, admission procedures, news updates, and contact information.</p>
+                            <p data-lang="ru">Основная цель проекта сайта РТСУ заключалась в создании комплексной онлайн-платформы, которая служит информационным хабом для студентов, преподавателей и заинтересованных сторон. Сайт предоставляет доступ к академическим программам, процедурам поступления, новостям и контактной информации.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Developed and deployed the university's official website using the 1C-Bitrix: Site Management platform</li>
-                                <li>Configured and customized Bitrix components and modules to facilitate content management</li>
-                                <li>Implemented news updates, event announcements, and academic resources systems</li>
+                                <li data-lang="en">Developed and deployed the university's official website using the 1C-Bitrix: Site Management platform</li>
+                                <li data-lang="ru">Разработал и развернул официальный сайт университета с использованием платформы 1C-Битрикс: Управление сайтом</li>
+                                <li data-lang="en">Configured and customized Bitrix components and modules to facilitate content management</li>
+                                <li data-lang="ru">Настроил и кастомизировал компоненты и модули Bitrix для облегчения управления контентом</li>
+                                <li data-lang="en">Implemented news updates, event announcements, and academic resources systems</li>
+                                <li data-lang="ru">Реализовал системы новостей, объявлений о событиях и академических ресурсов</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>CMS: 1C-Bitrix: Site Management, Frontend: HTML, CSS, JavaScript, Backend: PHP, Database: MySQL, Version Control: Git</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>CMS: 1C-Bitrix: Site Management, Frontend: HTML, CSS, JavaScript, Backend: PHP, Database: MySQL, Version Control: Git</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 13: CRM SafeCity -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">CRM SafeCity (Shahri Behatar)</div>
+                            <div class="project-title" data-lang="en">CRM SafeCity (Shahri Behatar)</div>
+                            <div class="project-title" data-lang="ru">CRM SafeCity (Шахри Бехатар)</div>
                             <div class="project-meta">Tajikistan | 2023</div>
                         </div>
                         <ul class="project-features">
-                            <li>City safety management system backend</li>
-                            <li>User, violation, statistics, and reporting modules</li>
-                            <li>REST API development for frontend integration</li>
-                            <li>RBAC security model</li>
-                            <li>Data filtering and analytics features</li>
+                            <li data-lang="en">City safety management system backend</li>
+                            <li data-lang="ru">Backend системы управления безопасностью города</li>
+                            <li data-lang="en">User, violation, statistics, and reporting modules</li>
+                            <li data-lang="ru">Модули пользователей, нарушений, статистики и отчётности</li>
+                            <li data-lang="en">REST API development for frontend integration</li>
+                            <li data-lang="ru">Разработка REST API для интеграции с frontend</li>
+                            <li data-lang="en">RBAC security model</li>
+                            <li data-lang="ru">Модель безопасности RBAC</li>
+                            <li data-lang="en">Data filtering and analytics features</li>
+                            <li data-lang="ru">Функции фильтрации данных и аналитики</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>This project aims to automate safety management processes in the city. It includes features for monitoring violations, managing passport data, analyzing statistics, generating reports, and user management.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">This project aims to automate safety management processes in the city. It includes features for monitoring violations, managing passport data, analyzing statistics, generating reports, and user management.</p>
+                            <p data-lang="ru">Этот проект направлен на автоматизацию процессов управления безопасностью в городе. Он включает функции мониторинга нарушений, управления паспортными данными, анализа статистики, генерации отчётов и управления пользователями.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Developed and configured web routes using Laravel</li>
-                                <li>Implemented route handling for users, violations, passports, statistics, and reports</li>
-                                <li>Built user management functionality including authorization, data updates, and deletion</li>
-                                <li>Developed RESTful APIs to communicate with the frontend</li>
-                                <li>Configured middleware for security and role-based access control</li>
-                                <li>Integrated controllers for request handling such as image retrieval, date-based filtering, and profile management</li>
-                                <li>Optimized route structure and improved code readability</li>
+                                <li data-lang="en">Developed and configured web routes using Laravel</li>
+                                <li data-lang="ru">Разработал и настроил веб-маршруты с использованием Laravel</li>
+                                <li data-lang="en">Implemented route handling for users, violations, passports, statistics, and reports</li>
+                                <li data-lang="ru">Реализовал обработку маршрутов для пользователей, нарушений, паспортов, статистики и отчётов</li>
+                                <li data-lang="en">Built user management functionality including authorization, data updates, and deletion</li>
+                                <li data-lang="ru">Построил функционал управления пользователями, включая авторизацию, обновление данных и удаление</li>
+                                <li data-lang="en">Developed RESTful APIs to communicate with the frontend</li>
+                                <li data-lang="ru">Разработал RESTful API для коммуникации с frontend</li>
+                                <li data-lang="en">Configured middleware for security and role-based access control</li>
+                                <li data-lang="ru">Настроил middleware для безопасности и контроля доступа на основе ролей</li>
+                                <li data-lang="en">Integrated controllers for request handling such as image retrieval, date-based filtering, and profile management</li>
+                                <li data-lang="ru">Интегрировал контроллеры для обработки запросов, таких как получение изображений, фильтрация по датам и управление профилями</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>Laravel (PHP 7.x), MySQL, REST API, Laravel Middleware, Blade Templates, Composer, Git, OpenServer (OSPanel)</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>Laravel (PHP 7.x), MySQL, REST API, Laravel Middleware, Blade Templates, Composer, Git, OpenServer (OSPanel)</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 14: Ijozat.mewr.tj -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Ijozat.mewr.tj (Government System)</div>
+                            <div class="project-title" data-lang="en">Ijozat.mewr.tj (Government System)</div>
+                            <div class="project-title" data-lang="ru">Ijozat.mewr.tj (Государственная система)</div>
                             <div class="project-meta">Tajikistan | 2021 – 2023</div>
                         </div>
                         <ul class="project-features">
-                            <li>Web application backend for government permits system</li>
-                            <li>SMS gateway integration (OsonSMS)</li>
-                            <li>Payment system integration (Amonatbank)</li>
-                            <li>Admin panel for application management</li>
-                            <li>Multilingual system support</li>
-                            <li>Performance optimization and caching</li>
+                            <li data-lang="en">Web application backend for government permits system</li>
+                            <li data-lang="ru">Backend веб-приложения для системы государственных разрешений</li>
+                            <li data-lang="en">SMS gateway integration (OsonSMS)</li>
+                            <li data-lang="ru">Интеграция SMS-шлюза (OsonSMS)</li>
+                            <li data-lang="en">Payment system integration (Amonatbank)</li>
+                            <li data-lang="ru">Интеграция платёжной системы (Амонатбанк)</li>
+                            <li data-lang="en">Admin panel for application management</li>
+                            <li data-lang="ru">Админ-панель для управления заявками</li>
+                            <li data-lang="en">Multilingual system support</li>
+                            <li data-lang="ru">Поддержка мультиязычной системы</li>
+                            <li data-lang="en">Performance optimization and caching</li>
+                            <li data-lang="ru">Оптимизация производительности и кэширование</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
                             <ul>
-                                <li>Developed the backend of the web application using the Laravel framework</li>
-                                <li>Designed and implemented the database structure, including migrations and Eloquent models</li>
-                                <li>Configured routes and middleware to manage access control across the application</li>
-                                <li>Integrated with the OsonSMS gateway to send users notifications about their application statuses</li>
-                                <li>Integrated with the "Amonatbank" payment system for processing transactions and verifying payments</li>
-                                <li>Optimized application performance, including data caching and query optimization</li>
-                                <li>Developed an admin panel for managing users, applications, and system settings</li>
-                                <li>Implemented application localization to support multiple languages</li>
-                                <li>Performed testing and debugging, including writing unit tests using PHPUnit</li>
+                                <li data-lang="en">Developed the backend of the web application using the Laravel framework</li>
+                                <li data-lang="ru">Разработал backend веб-приложения с использованием фреймворка Laravel</li>
+                                <li data-lang="en">Designed and implemented the database structure, including migrations and Eloquent models</li>
+                                <li data-lang="ru">Спроектировал и реализовал структуру базы данных, включая миграции и модели Eloquent</li>
+                                <li data-lang="en">Configured routes and middleware to manage access control across the application</li>
+                                <li data-lang="ru">Настроил маршруты и middleware для управления контролем доступа в приложении</li>
+                                <li data-lang="en">Integrated with the OsonSMS gateway to send users notifications about their application statuses</li>
+                                <li data-lang="ru">Интегрировался с шлюзом OsonSMS для отправки пользователям уведомлений о статусах их заявок</li>
+                                <li data-lang="en">Integrated with the "Amonatbank" payment system for processing transactions and verifying payments</li>
+                                <li data-lang="ru">Интегрировался с платёжной системой "Амонатбанк" для обработки транзакций и верификации платежей</li>
+                                <li data-lang="en">Optimized application performance, including data caching and query optimization</li>
+                                <li data-lang="ru">Оптимизировал производительность приложения, включая кэширование данных и оптимизацию запросов</li>
+                                <li data-lang="en">Developed an admin panel for managing users, applications, and system settings</li>
+                                <li data-lang="ru">Разработал админ-панель для управления пользователями, заявками и настройками системы</li>
+                                <li data-lang="en">Implemented application localization to support multiple languages</li>
+                                <li data-lang="ru">Реализовал локализацию приложения для поддержки нескольких языков</li>
+                                <li data-lang="en">Performed testing and debugging, including writing unit tests using PHPUnit</li>
+                                <li data-lang="ru">Выполнил тестирование и отладку, включая написание unit-тестов с использованием PHPUnit</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>Backend: Laravel Framework, Database: MySQL, Frontend: Blade Templates, JavaScript, HTML, CSS, APIs: OsonSMS Gateway, Amonatbank Payment System, Version Control: Git, Testing: PHPUnit</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>Backend: Laravel Framework, Database: MySQL, Frontend: Blade Templates, JavaScript, HTML, CSS, APIs: OsonSMS Gateway, Amonatbank Payment System, Version Control: Git, Testing: PHPUnit</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 15: Phone Management System -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Phone Management System (Ministry Project)</div>
+                            <div class="project-title" data-lang="en">Phone Management System (Ministry Project)</div>
+                            <div class="project-title" data-lang="ru">Система управления телефонами (Проект Министерства)</div>
                             <div class="project-meta">Tajikistan | 2022</div>
                         </div>
                         <ul class="project-features">
-                            <li>Backend system for employee and category management</li>
-                            <li>API endpoints for frontend integration</li>
-                            <li>File upload and media handling</li>
-                            <li>Authentication and role-based access system</li>
-                            <li>Performance optimization via custom Artisan commands</li>
+                            <li data-lang="en">Backend system for employee and category management</li>
+                            <li data-lang="ru">Backend система для управления сотрудниками и категориями</li>
+                            <li data-lang="en">API endpoints for frontend integration</li>
+                            <li data-lang="ru">API endpoints для интеграции с frontend</li>
+                            <li data-lang="en">File upload and media handling</li>
+                            <li data-lang="ru">Загрузка файлов и обработка медиа</li>
+                            <li data-lang="en">Authentication and role-based access system</li>
+                            <li data-lang="ru">Система аутентификации и контроля доступа на основе ролей</li>
+                            <li data-lang="en">Performance optimization via custom Artisan commands</li>
+                            <li data-lang="ru">Оптимизация производительности через кастомные Artisan команды</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
                             <ul>
-                                <li>Developed and configured web routes using the Laravel framework</li>
-                                <li>Implemented an admin panel with functionality for managing users, sections, categories, and employees</li>
-                                <li>Configured middleware for security and localization</li>
-                                <li>Created API endpoints for frontend integration</li>
-                                <li>Optimized application performance using custom Artisan commands</li>
-                                <li>Integrated file upload and image management features</li>
-                                <li>Developed authentication, registration, and password recovery functionality</li>
-                                <li>Set up routes for reports, contact page, and search functionality</li>
+                                <li data-lang="en">Developed and configured web routes using the Laravel framework</li>
+                                <li data-lang="ru">Разработал и настроил веб-маршруты с использованием фреймворка Laravel</li>
+                                <li data-lang="en">Implemented an admin panel with functionality for managing users, sections, categories, and employees</li>
+                                <li data-lang="ru">Реализовал админ-панель с функционалом управления пользователями, разделами, категориями и сотрудниками</li>
+                                <li data-lang="en">Configured middleware for security and localization</li>
+                                <li data-lang="ru">Настроил middleware для безопасности и локализации</li>
+                                <li data-lang="en">Created API endpoints for frontend integration</li>
+                                <li data-lang="ru">Создал API endpoints для интеграции с frontend</li>
+                                <li data-lang="en">Optimized application performance using custom Artisan commands</li>
+                                <li data-lang="ru">Оптимизировал производительность приложения с использованием кастомных Artisan команд</li>
+                                <li data-lang="en">Integrated file upload and image management features</li>
+                                <li data-lang="ru">Интегрировал функции загрузки файлов и управления изображениями</li>
+                                <li data-lang="en">Developed authentication, registration, and password recovery functionality</li>
+                                <li data-lang="ru">Разработал функционал аутентификации, регистрации и восстановления пароля</li>
+                                <li data-lang="en">Set up routes for reports, contact page, and search functionality</li>
+                                <li data-lang="ru">Настроил маршруты для отчётов, страницы контактов и функционала поиска</li>
                             </ul>
                         </div>
                     </div>
 
+                    <!-- Project 16: E-PERINATAL -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">E-PERINATAL (UNICEF) — C# System</div>
+                            <div class="project-title" data-lang="en">E-PERINATAL (UNICEF) — C# System</div>
+                            <div class="project-title" data-lang="ru">E-PERINATAL (ЮНИСЕФ) — C# Система</div>
                             <div class="project-meta">Tajikistan | 2023 – 2024</div>
                         </div>
                         <ul class="project-features">
-                            <li>Desktop system for healthcare data management</li>
-                            <li>Windows Forms application development</li>
-                            <li>API synchronization system (HttpClient)</li>
-                            <li>Auto-update mechanism with versioning</li>
-                            <li>PDF generation and reporting system</li>
-                            <li>Multi-language support (RU/TJ)</li>
+                            <li data-lang="en">Desktop system for healthcare data management</li>
+                            <li data-lang="ru">Десктопная система для управления медицинскими данными</li>
+                            <li data-lang="en">Windows Forms application development</li>
+                            <li data-lang="ru">Разработка приложения Windows Forms</li>
+                            <li data-lang="en">API synchronization system (HttpClient)</li>
+                            <li data-lang="ru">Система синхронизации API (HttpClient)</li>
+                            <li data-lang="en">Auto-update mechanism with versioning</li>
+                            <li data-lang="ru">Механизм автообновления с версионированием</li>
+                            <li data-lang="en">PDF generation and reporting system</li>
+                            <li data-lang="ru">Система генерации PDF и отчётности</li>
+                            <li data-lang="en">Multi-language support (RU/TJ)</li>
+                            <li data-lang="ru">Мультиязычная поддержка (RU/TJ)</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
-                            <p>Developed and optimized modules for employee data management, including adding, editing, and deleting records.</p>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
+                            <p data-lang="en">Developed and optimized modules for employee data management, including adding, editing, and deleting records.</p>
+                            <p data-lang="ru">Разработал и оптимизировал модули для управления данными сотрудников, включая добавление, редактирование и удаление записей.</p>
                             
-                            <h4>Key Achievements</h4>
+                            <h4 data-lang="en">Key Achievements</h4>
+                            <h4 data-lang="ru">Ключевые достижения</h4>
                             <ul>
-                                <li>Integrated localization (Russian and Tajik languages) into the application interface</li>
-                                <li>Implemented data synchronization functionality with the server via HTTP requests</li>
-                                <li>Created interfaces for working with the database, including tables for users, positions, skills, and educational institutions</li>
-                                <li>Designed and configured user interaction forms, such as authorization and data export forms</li>
-                                <li>Generated PDF documents using employee data</li>
-                                <li>Optimized business logic for handling employee addresses and positions</li>
-                                <li>Developed utilities to automate the population of dropdown lists and other interface elements</li>
-                                <li>Integrated with external services via APIs for version checking, update delivery, and data synchronization</li>
+                                <li data-lang="en">Integrated localization (Russian and Tajik languages) into the application interface</li>
+                                <li data-lang="ru">Интегрировал локализацию (русский и таджикский языки) в интерфейс приложения</li>
+                                <li data-lang="en">Implemented data synchronization functionality with the server via HTTP requests</li>
+                                <li data-lang="ru">Реализовал функционал синхронизации данных с сервером через HTTP запросы</li>
+                                <li data-lang="en">Created interfaces for working with the database, including tables for users, positions, skills, and educational institutions</li>
+                                <li data-lang="ru">Создал интерфейсы для работы с базой данных, включая таблицы для пользователей, должностей, навыков и учебных заведений</li>
+                                <li data-lang="en">Designed and configured user interaction forms, such as authorization and data export forms</li>
+                                <li data-lang="ru">Спроектировал и настроил формы взаимодействия с пользователем, такие как формы авторизации и экспорта данных</li>
+                                <li data-lang="en">Generated PDF documents using employee data</li>
+                                <li data-lang="ru">Генерировал PDF документы с использованием данных сотрудников</li>
+                                <li data-lang="en">Optimized business logic for handling employee addresses and positions</li>
+                                <li data-lang="ru">Оптимизировал бизнес-логику для обработки адресов и должностей сотрудников</li>
+                                <li data-lang="en">Developed utilities to automate the population of dropdown lists and other interface elements</li>
+                                <li data-lang="ru">Разработал утилиты для автоматизации заполнения выпадающих списков и других элементов интерфейса</li>
+                                <li data-lang="en">Integrated with external services via APIs for version checking, update delivery, and data synchronization</li>
+                                <li data-lang="ru">Интегрировался с внешними сервисами через API для проверки версий, доставки обновлений и синхронизации данных</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>C#, .NET Framework, Microsoft SQL Server, Entity Framework Core, Windows Forms, HttpClient, System.IO, Git, Newtonsoft.Json</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>C#, .NET Framework, Microsoft SQL Server, Entity Framework Core, Windows Forms, HttpClient, System.IO, Git, Newtonsoft.Json</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Project 17: HRH HEALTH DATABASE -->
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">HRH HEALTH DATABASE (UNICEF) — C# System</div>
+                            <div class="project-title" data-lang="en">HRH HEALTH DATABASE (UNICEF) — C# System</div>
+                            <div class="project-title" data-lang="ru">HRH HEALTH DATABASE (ЮНИСЕФ) — C# Система</div>
                             <div class="project-meta">Tajikistan | 2021 – 2024</div>
                         </div>
                         <ul class="project-features">
-                            <li>Healthcare employee management system</li>
-                            <li>Database synchronization system</li>
-                            <li>Windows Forms UI development</li>
-                            <li>Auto-update and version control system</li>
-                            <li>External API integrations</li>
+                            <li data-lang="en">Healthcare employee management system</li>
+                            <li data-lang="ru">Система управления сотрудниками здравоохранения</li>
+                            <li data-lang="en">Database synchronization system</li>
+                            <li data-lang="ru">Система синхронизации базы данных</li>
+                            <li data-lang="en">Windows Forms UI development</li>
+                            <li data-lang="ru">Разработка UI на Windows Forms</li>
+                            <li data-lang="en">Auto-update and version control system</li>
+                            <li data-lang="ru">Система автообновления и контроля версий</li>
+                            <li data-lang="en">External API integrations</li>
+                            <li data-lang="ru">Интеграции с внешними API</li>
                         </ul>
                         <button class="project-details-toggle" onclick="toggleDetails(this)">
-                            <span>More Details</span>
+                            <span data-lang="en">More Details</span>
+                            <span data-lang="ru">Подробнее</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="project-details">
-                            <h4>Project Description</h4>
+                            <h4 data-lang="en">Project Description</h4>
+                            <h4 data-lang="ru">Описание проекта</h4>
                             <ul>
-                                <li>Developed and maintained an employee data management system, including personal details, addresses, contact information, and job positions</li>
-                                <li>Implemented database interaction features, including automatic class generation for working with database tables</li>
-                                <li>Designed user interface using Windows Forms for editing and managing data</li>
-                                <li>Optimized data entry processes in the interface by developing helper methods for handling controls</li>
-                                <li>Integrated localization support for Russian and Tajik languages</li>
-                                <li>Implemented data synchronization mechanism between local database and remote server</li>
-                                <li>Developed and implemented an automatic application update process</li>
-                                <li>Integrated with external services via APIs for version checking, update delivery, and data synchronization</li>
+                                <li data-lang="en">Developed and maintained an employee data management system, including personal details, addresses, contact information, and job positions</li>
+                                <li data-lang="ru">Разработал и поддерживал систему управления данными сотрудников, включая личные данные, адреса, контактную информацию и должности</li>
+                                <li data-lang="en">Implemented database interaction features, including automatic class generation for working with database tables</li>
+                                <li data-lang="ru">Реализовал функции взаимодействия с базой данных, включая автоматическую генерацию классов для работы с таблицами БД</li>
+                                <li data-lang="en">Designed user interface using Windows Forms for editing and managing data</li>
+                                <li data-lang="ru">Спроектировал пользовательский интерфейс с использованием Windows Forms для редактирования и управления данными</li>
+                                <li data-lang="en">Optimized data entry processes in the interface by developing helper methods for handling controls</li>
+                                <li data-lang="ru">Оптимизировал процессы ввода данных в интерфейсе, разработав вспомогательные методы для обработки элементов управления</li>
+                                <li data-lang="en">Integrated localization support for Russian and Tajik languages</li>
+                                <li data-lang="ru">Интегрировал поддержку локализации для русского и таджикского языков</li>
+                                <li data-lang="en">Implemented data synchronization mechanism between local database and remote server</li>
+                                <li data-lang="ru">Реализовал механизм синхронизации данных между локальной базой данных и удалённым сервером</li>
+                                <li data-lang="en">Developed and implemented an automatic application update process</li>
+                                <li data-lang="ru">Разработал и внедрил процесс автоматического обновления приложения</li>
+                                <li data-lang="en">Integrated with external services via APIs for version checking, update delivery, and data synchronization</li>
+                                <li data-lang="ru">Интегрировался с внешними сервисами через API для проверки версий, доставки обновлений и синхронизации данных</li>
                             </ul>
 
                             <div class="tech-stack">
-                                <strong>Technology Stack:</strong> <span>C#, .NET Framework, Microsoft SQL Server, Entity Framework Core, Windows Forms, HttpClient, System.IO, Git, Newtonsoft.Json</span>
+                                <strong data-lang="en">Technology Stack:</strong>
+                                <strong data-lang="ru">Технологический стек:</strong>
+                                <span>C#, .NET Framework, Microsoft SQL Server, Entity Framework Core, Windows Forms, HttpClient, System.IO, Git, Newtonsoft.Json</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Education -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-graduation-cap"></i>
-                    Education
+                    <span data-lang="en">Education</span>
+                    <span data-lang="ru">Образование</span>
                 </h2>
                 <div class="info-grid">
                     <div class="info-item">
-                        <h4>Tajik National University</h4>
-                        <p>Informatics (2018–2021)</p>
+                        <h4 data-lang="en">Tajik National University</h4>
+                        <h4 data-lang="ru">Таджикский Национальный Университет</h4>
+                        <p data-lang="en">Informatics (2018–2021)</p>
+                        <p data-lang="ru">Информатика (2018–2021)</p>
                     </div>
                     <div class="info-item">
-                        <h4>NPI South Russian State University</h4>
-                        <p>IT & Computer Engineering (2021–2023)</p>
+                        <h4 data-lang="en">NPI South Russian State University</h4>
+                        <h4 data-lang="ru">Южно-Российский Государственный Университет (НПИ)</h4>
+                        <p data-lang="en">IT & Computer Engineering (2021–2023)</p>
+                        <p data-lang="ru">Информационные технологии и компьютерная инженерия (2021–2023)</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Certifications -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-certificate"></i>
-                    Certifications
+                    <span data-lang="en">Certifications</span>
+                    <span data-lang="ru">Сертификаты</span>
                 </h2>
                 <div class="info-grid">
                     <div class="info-item">
-                        <h4>Bitrix Framework Developer</h4>
+                        <h4 data-lang="en">Bitrix Framework Developer</h4>
+                        <h4 data-lang="ru">Разработчик Bitrix Framework</h4>
                         <p>1C-Bitrix</p>
                     </div>
                     <div class="info-item">
-                        <h4>Content Manager</h4>
+                        <h4 data-lang="en">Content Manager</h4>
+                        <h4 data-lang="ru">Контент-менеджер</h4>
                         <p>1C-Bitrix</p>
                     </div>
                     <div class="info-item">
-                        <h4>Administrator</h4>
-                        <p>Bitrix systems</p>
+                        <h4 data-lang="en">Administrator</h4>
+                        <h4 data-lang="ru">Администратор</h4>
+                        <p data-lang="en">Bitrix systems</p>
+                        <p data-lang="ru">Системы Bitrix</p>
                     </div>
                     <div class="info-item">
-                        <h4>JavaScript Levels 0–2</h4>
-                        <p>Alif Academy</p>
+                        <h4 data-lang="en">JavaScript Levels 0–2</h4>
+                        <h4 data-lang="ru">JavaScript Уровни 0–2</h4>
+                        <p data-lang="en">Alif Academy</p>
+                        <p data-lang="ru">Алиф Академия</p>
                     </div>
                     <div class="info-item">
-                        <h4>Composite Site Technology</h4>
+                        <h4 data-lang="en">Composite Site Technology</h4>
+                        <h4 data-lang="ru">Технология композитного сайта</h4>
                         <p>1C-Bitrix</p>
                     </div>
                     <div class="info-item">
-                        <h4>Website Promotion and Marketing</h4>
+                        <h4 data-lang="en">Website Promotion and Marketing</h4>
+                        <h4 data-lang="ru">Продвижение и маркетинг сайтов</h4>
                         <p>1C-Bitrix</p>
                     </div>
                     <div class="info-item">
-                        <h4>Integration, Design, and Platform Setup</h4>
+                        <h4 data-lang="en">Integration, Design, and Platform Setup</h4>
+                        <h4 data-lang="ru">Интеграция, дизайн и настройка платформы</h4>
                         <p>1C-Bitrix</p>
                     </div>
                     <div class="info-item">
-                        <h4>Core Technologies and Expansion</h4>
+                        <h4 data-lang="en">Core Technologies and Expansion</h4>
+                        <h4 data-lang="ru">Базовые технологии и расширение возможностей</h4>
                         <p>1C-Bitrix</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Languages -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-language"></i>
-                    Languages
+                    <span data-lang="en">Languages</span>
+                    <span data-lang="ru">Языки</span>
                 </h2>
                 <div class="languages-grid">
                     <div class="language-item">
-                        <h4>Tajik</h4>
-                        <div class="level">Native (C2)</div>
+                        <h4 data-lang="en">Tajik</h4>
+                        <h4 data-lang="ru">Таджикский</h4>
+                        <div class="level" data-lang="en">Native (C2)</div>
+                        <div class="level" data-lang="ru">Родной (C2)</div>
                     </div>
                     <div class="language-item">
-                        <h4>Russian</h4>
-                        <div class="level">Advanced (C1)</div>
+                        <h4 data-lang="en">Russian</h4>
+                        <h4 data-lang="ru">Русский</h4>
+                        <div class="level" data-lang="en">Advanced (C1)</div>
+                        <div class="level" data-lang="ru">Продвинутый (C1)</div>
                     </div>
                     <div class="language-item">
-                        <h4>English</h4>
-                        <div class="level">Elementary (A2)</div>
+                        <h4 data-lang="en">English</h4>
+                        <h4 data-lang="ru">Английский</h4>
+                        <div class="level" data-lang="en">Elementary (A2)</div>
+                        <div class="level" data-lang="ru">Начальный (A2)</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Technical Summary -->
             <div class="section">
                 <h2 class="section-title">
                     <i class="fas fa-terminal"></i>
-                    Technical Summary
+                    <span data-lang="en">Technical Summary</span>
+                    <span data-lang="ru">Техническое резюме</span>
                 </h2>
                 <div class="tech-summary">
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <div class="tech-label">Backend</div>
+                            <div class="tech-label" data-lang="en">Backend</div>
+                            <div class="tech-label" data-lang="ru">Backend</div>
                             <div class="tech-value">PHP, Laravel, Bitrix, C#</div>
                         </div>
                         <div class="tech-item">
-                            <div class="tech-label">Databases</div>
+                            <div class="tech-label" data-lang="en">Databases</div>
+                            <div class="tech-label" data-lang="ru">Базы данных</div>
                             <div class="tech-value">MySQL, PostgreSQL, Redis</div>
                         </div>
                         <div class="tech-item">
-                            <div class="tech-label">Architecture</div>
+                            <div class="tech-label" data-lang="en">Architecture</div>
+                            <div class="tech-label" data-lang="ru">Архитектура</div>
                             <div class="tech-value">REST API, DTO, Service Layer, Validation Layer</div>
                         </div>
                         <div class="tech-item">
-                            <div class="tech-label">Security</div>
+                            <div class="tech-label" data-lang="en">Security</div>
+                            <div class="tech-label" data-lang="ru">Безопасность</div>
                             <div class="tech-value">OTP, RBAC, rate limiting</div>
                         </div>
                         <div class="tech-item">
-                            <div class="tech-label">Integrations</div>
-                            <div class="tech-value">Banking, payment, SMS, CRM, biometric systems</div>
+                            <div class="tech-label" data-lang="en">Integrations</div>
+                            <div class="tech-label" data-lang="ru">Интеграции</div>
+                            <div class="tech-value" data-lang="en">Banking, payment, SMS, CRM, biometric systems</div>
+                            <div class="tech-value" data-lang="ru">Банковские, платёжные, SMS, CRM, биометрические системы</div>
                         </div>
                     </div>
                 </div>
@@ -1646,62 +1908,34 @@
     </div>
 
     <script>
-        // Theme Switcher
-        const themeButtons = document.querySelectorAll('.theme-btn');
-        
-        themeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const theme = btn.dataset.theme;
-                
-                // Remove active class from all buttons
-                themeButtons.forEach(b => b.classList.remove('active'));
-                
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                // Apply theme
-                if (theme === 'light') {
-                    document.documentElement.removeAttribute('data-theme');
-                } else {
-                    document.documentElement.setAttribute('data-theme', theme);
-                }
-                
-                // Save to localStorage
-                localStorage.setItem('resume-theme', theme);
-            });
-        });
+        function switchLanguage(lang) {
+            const currentLang = lang === 'ru' ? 'ru' : 'en';
+            document.body.setAttribute('data-current-lang', currentLang);
+            localStorage.setItem('resume-lang', currentLang);
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('resume-theme');
-        if (savedTheme && savedTheme !== 'light') {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            themeButtons.forEach(b => {
-                b.classList.remove('active');
-                if (b.dataset.theme === savedTheme) {
-                    b.classList.add('active');
-                }
-            });
+            const languageSelect = document.getElementById('lang-select');
+            if (languageSelect) {
+                languageSelect.value = currentLang;
+            }
         }
 
-        // Toggle Details
+        const savedLang = localStorage.getItem('resume-lang');
+        switchLanguage(savedLang === 'ru' ? 'ru' : 'en');
+
         function toggleDetails(button) {
             const details = button.nextElementSibling;
             const isExpanded = details.classList.contains('expanded');
             
-            // Close all other details
             document.querySelectorAll('.project-details').forEach(detail => {
                 detail.classList.remove('expanded');
             });
             document.querySelectorAll('.project-details-toggle').forEach(btn => {
                 btn.classList.remove('active');
-                btn.querySelector('span').textContent = 'More Details';
             });
             
-            // Toggle current
             if (!isExpanded) {
                 details.classList.add('expanded');
                 button.classList.add('active');
-                button.querySelector('span').textContent = 'Collapse';
             }
         }
     </script>
